@@ -9,4 +9,8 @@ public class Player {
         this.name = name;
         currentCombos = Combination.resetCombos();
     }
+    
+    public Combination[] getCombos() {
+        return currentCombos;
+    }
 }

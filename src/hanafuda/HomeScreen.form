@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="title" max="32767" attributes="0"/>
-          <Component id="bgrdImage" min="-2" max="-2" attributes="0"/>
+          <Component id="bgrdImage" alignment="0" min="-2" max="-2" attributes="0"/>
           <Component id="btnHTP" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -54,6 +54,9 @@
           <ComponentRef name="bgrdImage"/>
         </Property>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="bgrdImageComponentAdded"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="title">
       <Properties>

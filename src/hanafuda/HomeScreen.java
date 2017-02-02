@@ -36,6 +36,11 @@ public class HomeScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bgrdImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hanafuda/HomeScreenBackground.jpg"))); // NOI18N
+        bgrdImage.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                bgrdImageComponentAdded(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 72)); // NOI18N
         title.setForeground(new java.awt.Color(255, 0, 0));
@@ -76,6 +81,10 @@ public class HomeScreen extends javax.swing.JFrame {
     private void btnHTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHTPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHTPActionPerformed
+
+    private void bgrdImageComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_bgrdImageComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bgrdImageComponentAdded
 
 
 

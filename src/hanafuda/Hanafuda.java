@@ -9,13 +9,13 @@ public class Hanafuda {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-        //HomeScreen hs = new HomeScreen();
-        //hs.setVisible(true);
-        //Card.createDeck();
-        //while (!Card.isEmpty()) {
-        //    System.out.println(Card.drawCard());
-        //}
-        System.out.println("\u57ce\u9593");
+        HomeScreen hs = new HomeScreen();
+        hs.setVisible(true);
+        Card.createDeck();
+        while (!Card.isEmpty()) {
+            System.out.println(Card.drawCard());
+        }
+        /*System.out.println("\u57ce\u9593");
         File input = new File("input.txt");
         File output = new File("output.txt");
         Scanner sc1 = new Scanner(input);
@@ -27,7 +27,9 @@ public class Hanafuda {
             }
             ps.println();
         }
-        ps.print("please put this in and work");
+        Combination.initializeCombos();
+        Player p = new Player("David");
+        System.out.println(Arrays.toString(p.getCombos()));*/
     }
     
 }
