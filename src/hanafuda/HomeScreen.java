@@ -16,8 +16,9 @@ public class HomeScreen extends javax.swing.JFrame {
      */
     public HomeScreen() {
         initComponents();
-        btnHTP.setLocation(HomeScreen.WIDTH/2, HomeScreen.HEIGHT/2+50);
         btnHTP.setVisible(true);
+        bgrdImage.add(btnHTP);
+        btnHTP.setLocation(HomeScreen.WIDTH/2, HomeScreen.HEIGHT/2+100);
     }
 
     /**

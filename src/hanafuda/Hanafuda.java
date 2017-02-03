@@ -5,9 +5,8 @@ import java.io.*;
 
 public class Hanafuda {
 
-    /**
-     * @param args the command line arguments
-     */
+    private static String language;
+    
     public static void main(String[] args) throws FileNotFoundException {
         HomeScreen hs = new HomeScreen();
         hs.setVisible(true);
@@ -15,11 +14,11 @@ public class Hanafuda {
         while (!Card.isEmpty()) {
             System.out.println(Card.drawCard());
         }
-        /*System.out.println("\u57ce\u9593");
-        File input = new File("input.txt");
+        /*File input = new File("Settings.txt");
         File output = new File("output.txt");
         Scanner sc1 = new Scanner(input);
         PrintStream ps = new PrintStream(output);
+        language = sc1.next();
         while (sc1.hasNextLine()) {
             Scanner sc2 = new Scanner(sc1.nextLine());
             while (sc2.hasNext()) {
