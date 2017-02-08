@@ -12,8 +12,19 @@ public class Player {
         currentCombos = Combination.resetCombos();
     }
     
+    public Player(String name, int games, int score) {
+        this.name = name;
+        currentCombos = Combination.resetCombos();
+        gamesWon = games;
+        highScore = score;
+    }
+    
     public Combination[] getCombos() {
         return currentCombos;
+    }
+    
+    public void setGame(int i) {
+        gamesWon += i;
     }
     
     @Override
