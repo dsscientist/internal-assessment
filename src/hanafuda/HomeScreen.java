@@ -5,10 +5,8 @@
  */
 package hanafuda;
 
-/**
- *
- * @author David
- */
+import javax.swing.*;
+
 public class HomeScreen extends javax.swing.JFrame {
 
     /**
@@ -17,6 +15,7 @@ public class HomeScreen extends javax.swing.JFrame {
     public HomeScreen() {
         initComponents();
         btnHTP.setVisible(true);
+        title.setAlignmentY(TOP_ALIGNMENT);
         bgrdImage.add(btnHTP);
         btnHTP.setLocation(HomeScreen.WIDTH/2, HomeScreen.HEIGHT/2+100);
     }
@@ -80,7 +79,7 @@ public class HomeScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHTPActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btnHTPActionPerformed
 
     private void bgrdImageComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_bgrdImageComponentAdded

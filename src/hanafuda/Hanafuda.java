@@ -6,22 +6,19 @@ import java.io.*;
 public class Hanafuda {
 
     private static String language;
-    private static ArrayList<Player> playerList = new ArrayList<>();
+    private static TreeSet<Player> playerList = new TreeSet<>(new PlayerComparator());
+    //although searching can be slower, I want it in descending score order
     
     public static void main(String[] args) throws FileNotFoundException {
-        HomeScreen hs = new HomeScreen();
-        hs.setVisible(true);
+        //HomeScreen hs = new HomeScreen();
+        TestPanel test = new TestPanel();
+        test.setVisible(true);
+        //hs.setVisible(true);
         Card.createDeck();
-        while (!Card.isEmpty()) {
-            System.out.println(Card.drawCard());
-        }
         File settings = new File("Settings.txt");
         Hanafuda.getSettings(settings);
-        playerList.get(0).setGame(2);
         Hanafuda.saveData(settings);
-        Combination.initializeCombos();
-        Player p = new Player("David");
-        System.out.println(Arrays.toString(p.getCombos()));
+        
     }
     
     public static void getSettings(File settings) throws FileNotFoundException {

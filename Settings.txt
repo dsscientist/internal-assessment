@@ -1,3 +1,5 @@
 Japanese
-@s @d @d
-@s @d @d
+David 8 13
+Spencer 7 12
+Linda 4 11
+Erika 5 9
