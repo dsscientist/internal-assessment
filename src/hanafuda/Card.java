@@ -13,7 +13,7 @@ public class Card {
     }
     
     public static void createDeck() {
-        Card[][] deck = new Card[12][4]; //fastest way to initial all cards
+        Card[][] deck = new Card[12][4]; //fastest way to initialize all cards
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 4; j++){
                 deck[i][j] = new Card();

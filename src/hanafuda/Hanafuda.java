@@ -7,6 +7,7 @@ public class Hanafuda {
 
     private static String language;
     private static TreeSet<Player> playerList = new TreeSet<>(new PlayerComparator());
+    private static Player current;
     //although searching can be slower, I want it in descending score order
     
     public static void main(String[] args) throws FileNotFoundException {
@@ -27,7 +28,7 @@ public class Hanafuda {
         while (scanLine.hasNextLine()) {
             String l = scanLine.nextLine();
             Scanner scanTok = new Scanner(l);
-            String name = scanTok.next();
+            String name = scanTok.next() + scanTok.next();
             int gamesWon = scanTok.nextInt();
             int highScore = scanTok.nextInt();
             playerList.add(new Player(name, gamesWon, highScore));
@@ -40,5 +41,18 @@ public class Hanafuda {
         for (Player p: playerList) {
             ps.println(p);
         }
+    }
+    
+    public static boolean setPlayer(String name) {
+        Iterator itr = playerList.iterator();
+        while (itr.hasNext()) {
+            Player temp = (Player) itr.next();
+            if (temp.getName().equalsIgnoreCase(name)) {
+                current = temp;
+                return true;
+            }
+        }
+        return false;
+        
     }
 }
