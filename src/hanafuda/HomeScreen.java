@@ -14,9 +14,11 @@ public class HomeScreen extends javax.swing.JFrame {
      */
     public HomeScreen() {
         initComponents();
-        btnHTP.setVisible(true);
+        JLayeredPane jlp = new JLayeredPane();
+        jlp.setLayer(bgrdImage, 1);
+        jlp.add(btnHTP, 3);
         title.setAlignmentY(TOP_ALIGNMENT);
-        bgrdImage.add(btnHTP);
+        jlp.add(title, 2);
         btnHTP.setLocation(HomeScreen.WIDTH/2, HomeScreen.HEIGHT/2+100);
     }
 
