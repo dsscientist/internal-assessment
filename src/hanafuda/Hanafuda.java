@@ -28,7 +28,7 @@ public class Hanafuda {
         while (scanLine.hasNextLine()) {
             String l = scanLine.nextLine();
             Scanner scanTok = new Scanner(l);
-            String name = scanTok.next() + scanTok.next();
+            String name = scanTok.next() + " " + scanTok.next();
             int gamesWon = scanTok.nextInt();
             int highScore = scanTok.nextInt();
             playerList.add(new Player(name, gamesWon, highScore));
