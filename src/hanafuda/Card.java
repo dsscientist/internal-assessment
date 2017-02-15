@@ -49,6 +49,7 @@ public class Card {
         deck[10][2].combos.remove(1);
         deck[10][2].combos.remove(0);
         
+        
         for (Card[] e: deck) {
             for (Card f: e) {
                 drawStack.push(f);

@@ -2,6 +2,7 @@ package hanafuda;
 
 import java.util.*;
 import java.io.*;
+import javax.swing.*;
 
 public class Hanafuda {
 
@@ -9,12 +10,15 @@ public class Hanafuda {
     private static TreeSet<Player> playerList = new TreeSet<>(new PlayerComparator());
     private static Player current;
     //although searching can be slower, I want it in descending score order
+    private static final JPanel[] jp = new JPanel[12];
     
     public static void main(String[] args) throws FileNotFoundException {
-        HomeScreen hs = new HomeScreen();
-        TestPanel test = new TestPanel();
-        test.setVisible(true);
-        hs.setVisible(true);
+        AppScreen as = new AppScreen();
+        as.setVisible(true);
+        //HomeScreen hs = new HomeScreen();
+        //TestPanel test = new TestPanel();
+        //test.setVisible(true);
+        //hs.setVisible(true);
         Card.createDeck();
         File settings = new File("Settings.txt");
         Hanafuda.getSettings(settings);
