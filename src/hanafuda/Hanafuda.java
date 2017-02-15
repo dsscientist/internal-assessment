@@ -55,10 +55,10 @@ public class Hanafuda {
         return false;   
     }
     
-    public static String encrypt(String word) {
+    public static String encrypt(String word) {//doesnt have to wrap around
         String encrypted = "";
         for (int i = 0; i < word.length(); i++) {
-            encrypted += (word.charAt(i) - 7);
+            encrypted += (char) (word.charAt(i) - 7);
         }
         return encrypted;
     }
@@ -66,7 +66,7 @@ public class Hanafuda {
     public static String decrypt(String encrypted) {
         String unknown = "";
         for (int i = 0; i < encrypted.length(); i++) {
-            unknown += (encrypted.charAt(i) + 7);
+            unknown += (char) (encrypted.charAt(i) + 7);
         }
         return unknown;
     }
