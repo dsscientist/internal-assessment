@@ -5,10 +5,9 @@
  */
 package hanafuda;
 
-/**
- *
- * @author shirdav18
- */
+import java.awt.*;
+import javax.swing.*;
+
 public class AppScreen extends javax.swing.JFrame {
 
     /**
@@ -16,11 +15,22 @@ public class AppScreen extends javax.swing.JFrame {
      */
     public AppScreen() {
         initComponents();
-        this.setSize(950, 540);
+        this.setSize(940, 540);
+        JLayeredPane lp = new JLayeredPane();
+        lp.setSize(940, 540);
+        lp.setVisible(true);
+        this.add(lp);
+        HomeScreenBgrd hsb = new HomeScreenBgrd();
+        lp.add(hsb, 1);
+        hsb.setSize(940, 540);
+        hsb.setVisible(true);
+        hsb.setLocation(0, 0);
+        hsb.setOpaque(false);
         HomeScreen hs = new HomeScreen();
-        hs.setSize(950, 540);
+        lp.add(hs, 2);
+        hs.setSize(940, 540);
         hs.setVisible(true);
-        hs.setLocation(0, 0);
+        hs.setOpaque(true);
     }
 
     /**
@@ -38,11 +48,11 @@ public class AppScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         pack();

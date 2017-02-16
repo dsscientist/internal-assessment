@@ -27,30 +27,61 @@ public class HomeScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        HTPButton = new javax.swing.JButton();
+        Title = new javax.swing.JLabel();
+        ChangePlayerButton = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
+        HTPButton.setBackground(new java.awt.Color(255, 255, 255));
+        HTPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        HTPButton.setText("How to Play");
+        HTPButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HTPButtonActionPerformed(evt);
+            }
+        });
+
+        Title.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 72)); // NOI18N
+        Title.setText("HANAFUDA");
+
+        ChangePlayerButton.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(jButton1)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(Title))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(261, 261, 261)
+                        .addComponent(ChangePlayerButton)
+                        .addGap(40, 40, 40)
+                        .addComponent(HTPButton)))
+                .addContainerGap(338, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(130, 130, 130))
+                .addContainerGap(155, Short.MAX_VALUE)
+                .addComponent(Title)
+                .addGap(96, 96, 96)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HTPButton)
+                    .addComponent(ChangePlayerButton))
+                .addGap(183, 183, 183))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void HTPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HTPButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HTPButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton ChangePlayerButton;
+    private javax.swing.JButton HTPButton;
+    private javax.swing.JLabel Title;
     // End of variables declaration//GEN-END:variables
 }

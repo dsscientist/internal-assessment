@@ -6,7 +6,7 @@ public class Card {
     private int month;
     private int value;
     private String type;
-    private ArrayList<String> combos = new ArrayList<>();
+    public ArrayList<String> combos = new ArrayList<>();
     private static Stack<Card> drawStack = new Stack<>();//tech. any collection would do
     
     private Card() {
@@ -48,12 +48,20 @@ public class Card {
         deck[10][2].setValue(1);
         deck[10][2].combos.remove(1);
         deck[10][2].combos.remove(0);
-        
-        
+        deck[8][0].combos.add("\u4e00\u676f\u3067\u82b1\u898b");
+        deck[8][0].combos.add("\u4e00\u676f\u3067\u6708\u898b");
+        deck[2][0].combos.add("\u4e00\u676f\u3067\u82b1\u898b");
+        deck[7][0].combos.add("\u4e00\u676f\u3067\u6708\u898b");
+        deck[5][0].combos.add("\u732a\u9e7f\u8776");
+        deck[6][0].combos.add("\u732a\u9e7f\u8776");
+        deck[9][0].combos.add("\u732a\u9e7f\u8776");
         for (Card[] e: deck) {
             for (Card f: e) {
                 drawStack.push(f);
             }
+        }
+        while(!isEmpty()) {
+            System.out.println(drawCard().combos);
         }
         shuffleDeck();
     }
@@ -92,6 +100,7 @@ public class Card {
         combos.add("\u56db\u5149");
         combos.add("\u96e8\u56db\u5149");
         combos.add("\u4e09\u5149");
+        combos.remove("\u30bf\u30cd");
     }
     
     public static void shuffleDeck() {
