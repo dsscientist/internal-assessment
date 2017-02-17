@@ -17,9 +17,6 @@ public class AppScreen extends javax.swing.JFrame {
         initComponents();
         this.setSize(940, 540);
         JLayeredPane lp = new JLayeredPane();
-        lp.setSize(940, 540);
-        lp.setVisible(true);
-        this.add(lp);
         HomeScreenBgrd hsb = new HomeScreenBgrd();
         lp.add(hsb, 1);
         hsb.setSize(940, 540);
@@ -30,7 +27,11 @@ public class AppScreen extends javax.swing.JFrame {
         lp.add(hs, 2);
         hs.setSize(940, 540);
         hs.setVisible(true);
-        hs.setOpaque(true);
+        hs.setOpaque(false);
+        lp.moveToFront(hs);
+        this.add(lp);
+        lp.setSize(940, 540);
+        lp.setVisible(true);
     }
 
     /**

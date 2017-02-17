@@ -31,21 +31,23 @@ public class Card {
         deck[10][0].combos.remove(1);
         deck[11][0].toBright();
         deck[0][1].value = 10;
-        deck[0][1].combos.remove(1);
-        deck[1][1].combos.remove(1);
-        deck[2][1].combos.remove(1);
-        deck[3][1].combos.remove(0);
-        deck[4][1].combos.remove(1);
-        deck[4][1].combos.remove(0);
-        deck[5][1].combos.remove(0);
-        deck[6][1].combos.remove(1);
-        deck[6][1].combos.remove(0);
+        deck[0][1].toRedStrip();
+        deck[1][1].toRedStrip();
+        deck[2][1].toRedStrip();
+        deck[3][1].toBlankStrip();
+        deck[4][1].toBlankStrip();
+        deck[5][1].toBlueStrip();
+        deck[6][1].toBlankStrip();
         deck[7][1].setValue(0);
-        deck[8][1].combos.remove(0);
-        deck[9][1].combos.remove(0);
+        deck[7][1].toAnimal();
+        deck[8][1].toBlueStrip();
+        deck[9][1].toBlueStrip();
         deck[10][1].setValue(0);
+        deck[10][1].toAnimal();
         deck[11][1].setValue(0);
+        deck[11][1].toAnimal();
         deck[10][2].setValue(1);
+        deck[10][2].combos.remove(2);
         deck[10][2].combos.remove(1);
         deck[10][2].combos.remove(0);
         deck[8][0].combos.add("\u4e00\u676f\u3067\u82b1\u898b");
@@ -105,6 +107,25 @@ public class Card {
     
     public static void shuffleDeck() {
         Collections.shuffle(drawStack);
+    }
+    
+    public void toBlueStrip() {
+        this.combos.remove(0);
+    }
+    
+    public void toRedStrip() {
+        this.combos.remove(1);
+    }
+    
+    public void toBlankStrip() {
+        this.combos.remove(1);
+        this.combos.remove(0);
+    }
+    
+    public void toAnimal() {
+        this.combos.remove(2);
+        this.combos.remove(1);
+        this.combos.remove(0);
     }
     
     public int getMonth() {

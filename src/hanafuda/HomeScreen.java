@@ -16,6 +16,8 @@ public class HomeScreen extends javax.swing.JPanel {
      */
     public HomeScreen() {
         initComponents();
+        Title.setLocation(WIDTH, HEIGHT);
+        jLabel1.setText(Hanafuda.getPlayer().getName());
     }
 
     /**
@@ -30,6 +32,8 @@ public class HomeScreen extends javax.swing.JPanel {
         HTPButton = new javax.swing.JButton();
         Title = new javax.swing.JLabel();
         ChangePlayerButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         HTPButton.setBackground(new java.awt.Color(255, 255, 255));
         HTPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
@@ -41,9 +45,15 @@ public class HomeScreen extends javax.swing.JPanel {
         });
 
         Title.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 72)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 0, 0));
         Title.setText("HANAFUDA");
 
-        ChangePlayerButton.setText("jButton1");
+        ChangePlayerButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        ChangePlayerButton.setText("Play");
+
+        jButton1.setText("jButton1");
+
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,7 +68,12 @@ public class HomeScreen extends javax.swing.JPanel {
                         .addGap(261, 261, 261)
                         .addComponent(ChangePlayerButton)
                         .addGap(40, 40, 40)
-                        .addComponent(HTPButton)))
+                        .addComponent(HTPButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(jLabel1)
+                        .addGap(100, 100, 100)
+                        .addComponent(jButton1)))
                 .addContainerGap(338, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,7 +85,14 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(HTPButton)
                     .addComponent(ChangePlayerButton))
-                .addGap(183, 183, 183))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(149, 149, 149))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(137, 137, 137))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -83,5 +105,7 @@ public class HomeScreen extends javax.swing.JPanel {
     private javax.swing.JButton ChangePlayerButton;
     private javax.swing.JButton HTPButton;
     private javax.swing.JLabel Title;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

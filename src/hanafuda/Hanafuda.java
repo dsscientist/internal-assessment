@@ -13,21 +13,22 @@ public class Hanafuda {
     private static final JPanel[] jp = new JPanel[12];
     
     public static void main(String[] args) throws FileNotFoundException {
+        Card.createDeck();
+        File settings = new File("Settings.txt");
+        Hanafuda.getSettings(settings);
         AppScreen as = new AppScreen();
         as.setVisible(true);
         //HomeScreen hs = new HomeScreen();
         //TestPanel test = new TestPanel();
         //test.setVisible(true);
         //hs.setVisible(true);
-        Card.createDeck();
-        File settings = new File("Settings.txt");
-        Hanafuda.getSettings(settings);
         Hanafuda.saveData(settings);
     }
     
     public static void getSettings(File settings) throws FileNotFoundException {
         Scanner scanLine = new Scanner(settings);
         language = scanLine.nextLine();
+        String pName = scanLine.nextLine();// make sure to change dummy data so that it has name
         while (scanLine.hasNextLine()) {
             String l = decrypt(scanLine.nextLine());
             Scanner scanTok = new Scanner(l);
@@ -36,11 +37,13 @@ public class Hanafuda {
             int highScore = scanTok.nextInt();
             playerList.add(new Player(name, gamesWon, highScore));
         }
+        setPlayer(pName);
     }
     
     public static void saveData(File settings) throws FileNotFoundException{
         PrintStream ps = new PrintStream(settings);
         ps.println(language);
+        ps.println(current.getName());
         for (Player p: playerList) {
             ps.println(encrypt(p.toString()));
         }
@@ -73,5 +76,9 @@ public class Hanafuda {
             unknown += (char) (encrypted.charAt(i) + 7);
         }
         return unknown;
+    }
+    
+    public static Player getPlayer() {
+        return current;
     }
 }
