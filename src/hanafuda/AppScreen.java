@@ -15,22 +15,22 @@ public class AppScreen extends javax.swing.JFrame {
      */
     public AppScreen() {
         initComponents();
-        this.setSize(940, 540);
+        this.setSize(975, 580);
         JLayeredPane lp = new JLayeredPane();
         HomeScreenBgrd hsb = new HomeScreenBgrd();
         lp.add(hsb, 1);
-        hsb.setSize(940, 540);
+        hsb.setSize(960, 540);
         hsb.setVisible(true);
         hsb.setLocation(0, 0);
         hsb.setOpaque(false);
         HomeScreen hs = new HomeScreen();
         lp.add(hs, 2);
-        hs.setSize(940, 540);
+        hs.setSize(960, 540);
         hs.setVisible(true);
         hs.setOpaque(false);
         lp.moveToFront(hs);
         this.add(lp);
-        lp.setSize(940, 540);
+        lp.setSize(960, 540);
         lp.setVisible(true);
     }
 

@@ -16,6 +16,8 @@ public class Hanafuda {
         Card.createDeck();
         File settings = new File("Settings.txt");
         Hanafuda.getSettings(settings);
+        File gameDataCheck = new File("GameData.txt");
+        checkGameData(gameDataCheck);
         AppScreen as = new AppScreen();
         as.setVisible(true);
         //HomeScreen hs = new HomeScreen();
@@ -27,8 +29,8 @@ public class Hanafuda {
     
     public static void getSettings(File settings) throws FileNotFoundException {
         Scanner scanLine = new Scanner(settings);
-        language = scanLine.nextLine();
-        String pName = scanLine.nextLine();// make sure to change dummy data so that it has name
+        language = decrypt(scanLine.nextLine());
+        String pName = decrypt(scanLine.nextLine());// make sure to change dummy data so that it has name
         while (scanLine.hasNextLine()) {
             String l = decrypt(scanLine.nextLine());
             Scanner scanTok = new Scanner(l);
@@ -42,10 +44,19 @@ public class Hanafuda {
     
     public static void saveData(File settings) throws FileNotFoundException{
         PrintStream ps = new PrintStream(settings);
+        ps.println(encrypt(language));
+        ps.println(encrypt(current.getName()));
+        for (Player p: playerList) {
+            ps.println(encrypt(p.toString()));
+        }
+    }
+    
+    public static void checkGameData(File gameDataCheck) throws FileNotFoundException{
+        PrintStream ps = new PrintStream(gameDataCheck);
         ps.println(language);
         ps.println(current.getName());
         for (Player p: playerList) {
-            ps.println(encrypt(p.toString()));
+            ps.println(p.toString());
         }
     }
     

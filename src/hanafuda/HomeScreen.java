@@ -5,10 +5,8 @@
  */
 package hanafuda;
 
-/**
- *
- * @author shirdav18
- */
+import java.awt.*;
+
 public class HomeScreen extends javax.swing.JPanel {
 
     /**
@@ -16,8 +14,20 @@ public class HomeScreen extends javax.swing.JPanel {
      */
     public HomeScreen() {
         initComponents();
-        Title.setLocation(WIDTH, HEIGHT);
-        jLabel1.setText(Hanafuda.getPlayer().getName());
+        title.setLocation(WIDTH, HEIGHT);
+        title.setForeground(new Color(226,34,33));
+        changePlayerButton.setLocation(WIDTH, HEIGHT);
+        currentPlayerLabel.setText("Current Player:");
+        currentPlayerLabel.setForeground(new Color(9,21,17));
+        setPlayerName(Hanafuda.getPlayer().getName());
+        currentPName.setForeground(new Color(9,21,17));
+        nameBox.setOpaque(true);
+        nameBox.setVisible(false);
+        nameBox.setText("Enter name here...");
+    }
+    
+    private void setPlayerName(String name) {
+        currentPName.setText(name);
     }
 
     /**
@@ -30,13 +40,15 @@ public class HomeScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         HTPButton = new javax.swing.JButton();
-        Title = new javax.swing.JLabel();
-        ChangePlayerButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
+        playButton = new javax.swing.JButton();
+        changePlayerButton = new javax.swing.JButton();
+        currentPName = new javax.swing.JLabel();
+        currentPlayerLabel = new javax.swing.JLabel();
+        nameBox = new javax.swing.JTextField();
 
-        HTPButton.setBackground(new java.awt.Color(255, 255, 255));
-        HTPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        HTPButton.setBackground(new java.awt.Color(255, 204, 255));
+        HTPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         HTPButton.setText("How to Play");
         HTPButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,16 +56,47 @@ public class HomeScreen extends javax.swing.JPanel {
             }
         });
 
-        Title.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 72)); // NOI18N
-        Title.setForeground(new java.awt.Color(255, 0, 0));
-        Title.setText("HANAFUDA");
+        title.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 72)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 0, 0));
+        title.setText("HANAFUDA");
+        title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        ChangePlayerButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        ChangePlayerButton.setText("Play");
+        playButton.setBackground(new java.awt.Color(255, 255, 255));
+        playButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        playButton.setText("Play");
 
-        jButton1.setText("jButton1");
+        changePlayerButton.setBackground(new java.awt.Color(255, 153, 255));
+        changePlayerButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        changePlayerButton.setText("Change Player");
+        changePlayerButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changePlayerButtonMouseClicked(evt);
+            }
+        });
 
-        jLabel1.setText("jLabel1");
+        currentPName.setBackground(new java.awt.Color(0, 51, 51));
+        currentPName.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 24)); // NOI18N
+        currentPName.setForeground(new java.awt.Color(255, 0, 0));
+        currentPName.setText("[current player]");
+
+        currentPlayerLabel.setBackground(new java.awt.Color(0, 51, 51));
+        currentPlayerLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 24)); // NOI18N
+        currentPlayerLabel.setForeground(new java.awt.Color(255, 0, 0));
+        currentPlayerLabel.setText("Current Player:");
+
+        nameBox.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        nameBox.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nameBox.setText("Enter Name Here");
+        nameBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameBoxActionPerformed(evt);
+            }
+        });
+        nameBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameBoxKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,37 +105,42 @@ public class HomeScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(Title))
+                        .addGap(240, 240, 240)
+                        .addComponent(title))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(ChangePlayerButton)
-                        .addGap(40, 40, 40)
-                        .addComponent(HTPButton))
+                        .addGap(404, 404, 404)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(HTPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(changePlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameBox)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jLabel1)
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton1)))
-                .addContainerGap(338, Short.MAX_VALUE))
+                        .addGap(359, 359, 359)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(currentPName))
+                            .addComponent(currentPlayerLabel))))
+                .addGap(244, 244, 244))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
-                .addComponent(Title)
-                .addGap(96, 96, 96)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(HTPButton)
-                    .addComponent(ChangePlayerButton))
+                .addGap(38, 38, 38)
+                .addComponent(currentPlayerLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(currentPName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(title)
+                .addGap(53, 53, 53)
+                .addComponent(playButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(149, 149, 149))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(137, 137, 137))))
+                .addComponent(HTPButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(changePlayerButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,12 +148,30 @@ public class HomeScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_HTPButtonActionPerformed
 
+    private void changePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePlayerButtonMouseClicked
+        nameBox.setVisible(true);
+    }//GEN-LAST:event_changePlayerButtonMouseClicked
+
+    private void nameBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameBoxKeyPressed
+        nameBox.setText("");
+    }//GEN-LAST:event_nameBoxKeyPressed
+
+    private void nameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBoxActionPerformed
+        if (Hanafuda.setPlayer(nameBox.getText())) {
+            nameBox.setVisible(false);
+        } else {
+            nameBox.setText("Invalid name");
+        }
+    }//GEN-LAST:event_nameBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ChangePlayerButton;
     private javax.swing.JButton HTPButton;
-    private javax.swing.JLabel Title;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton changePlayerButton;
+    private javax.swing.JLabel currentPName;
+    private javax.swing.JLabel currentPlayerLabel;
+    private javax.swing.JTextField nameBox;
+    private javax.swing.JButton playButton;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
