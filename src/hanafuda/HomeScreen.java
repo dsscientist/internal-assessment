@@ -21,9 +21,8 @@ public class HomeScreen extends javax.swing.JPanel {
         currentPlayerLabel.setForeground(new Color(9,21,17));
         setPlayerName(Hanafuda.getPlayer().getName());
         currentPName.setForeground(new Color(9,21,17));
-        nameBox.setOpaque(true);
+        nameBox.setText(Hanafuda.getPlayer().getName());
         nameBox.setVisible(false);
-        nameBox.setText("Enter name here...");
     }
     
     private void setPlayerName(String name) {
@@ -138,9 +137,9 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addComponent(HTPButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(changePlayerButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(66, 66, 66))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,16 +148,20 @@ public class HomeScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_HTPButtonActionPerformed
 
     private void changePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePlayerButtonMouseClicked
+        nameBox.selectAll();
         nameBox.setVisible(true);
+        this.repaint();
     }//GEN-LAST:event_changePlayerButtonMouseClicked
 
     private void nameBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameBoxKeyPressed
-        nameBox.setText("");
+        
     }//GEN-LAST:event_nameBoxKeyPressed
 
     private void nameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBoxActionPerformed
         if (Hanafuda.setPlayer(nameBox.getText())) {
             nameBox.setVisible(false);
+            currentPName.setText(Hanafuda.getPlayer().getName());
+            
         } else {
             nameBox.setText("Invalid name");
         }

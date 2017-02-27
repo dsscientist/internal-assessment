@@ -9,10 +9,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public class AppScreen extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AppScreen
-     */
+    
+    private static final javax.swing.JPanel[] screens = new javax.swing.JPanel[2];
+    
     public AppScreen() {
         initComponents();
         this.setSize(975, 580);
