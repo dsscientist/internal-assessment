@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Card {
     private int month;
+    private int day; //usage for getting specific image
     private int value;
     private String type;
     public ArrayList<String> combos = new ArrayList<>();
@@ -20,6 +21,7 @@ public class Card {
             for (int j = 0; j < 4; j++){
                 deck[i][j] = new Card();
                 deck[i][j].month = i + 1;
+                deck[i][j].day = j;
                 deck[i][j].setValue(j);
             }
         }
