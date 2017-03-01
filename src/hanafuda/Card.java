@@ -1,6 +1,7 @@
 package hanafuda;
 
 import java.util.*;
+import javax.swing.ImageIcon;
 
 public class Card {
     private int month;
@@ -9,6 +10,7 @@ public class Card {
     private String type;
     public ArrayList<String> combos = new ArrayList<>();
     private static Stack<Card> drawStack = new Stack<>();//tech. any collection would do
+    private ImageIcon picture;
     
     private Card() {
         
@@ -23,6 +25,7 @@ public class Card {
                 deck[i][j].month = i + 1;
                 deck[i][j].day = j;
                 deck[i][j].setValue(j);
+                deck[i][j].picture = new ImageIcon(i + "." + j);
             }
         }
         deck[0][0].toBright();
@@ -63,9 +66,6 @@ public class Card {
             for (Card f: e) {
                 drawStack.push(f);
             }
-        }
-        while(!isEmpty()) {
-            System.out.println(drawCard().combos);
         }
         shuffleDeck();
     }
@@ -140,6 +140,10 @@ public class Card {
     
     public String getType() {
         return type;
+    }
+    
+    public ImageIcon getPicture() {
+        return picture;
     }
     
     @Override

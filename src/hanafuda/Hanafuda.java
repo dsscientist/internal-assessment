@@ -58,7 +58,7 @@ public class Hanafuda {
         for (Player p: playerList) {
             ps.println(p.toString());
         }
-    }
+    }// make sure to take this out before you submit project...
     
     public static boolean setPlayer(String name) {
         Iterator itr = playerList.iterator();
@@ -66,7 +66,7 @@ public class Hanafuda {
             Player temp = (Player) itr.next();
             if (temp.getName().equalsIgnoreCase(name)) {
                 current = temp;
-                System.out.println(" Current player set as " + current.getName());
+                System.out.println("Current player set as " + current.getName());
                 return true;
             }
         }
