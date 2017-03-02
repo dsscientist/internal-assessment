@@ -27,6 +27,7 @@ public class HomeScreen extends javax.swing.JPanel {
         nameBox.setVisible(false);
         newPButton.setVisible(false);
         newPButton.setBackground(new Color(233,185,234));
+        returnButton.setVisible(false);
     }
     
     private void setPlayerName(String name) {
@@ -52,9 +53,16 @@ public class HomeScreen extends javax.swing.JPanel {
         newPButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(940, 950));
+
         HTPButton.setBackground(new java.awt.Color(255, 204, 255));
         HTPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         HTPButton.setText("How to Play");
+        HTPButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HTPButtonMouseClicked(evt);
+            }
+        });
         HTPButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HTPButtonActionPerformed(evt);
@@ -176,6 +184,7 @@ public class HomeScreen extends javax.swing.JPanel {
     private void changePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePlayerButtonMouseClicked
         nameBox.setVisible(true);
         newPButton.setVisible(true);
+        returnButton.setVisible(true);
         title.setVisible(false);
         HTPButton.setVisible(false);
         playButton.setVisible(false);
@@ -190,6 +199,7 @@ public class HomeScreen extends javax.swing.JPanel {
         if (Hanafuda.setPlayer(nameBox.getText())) {
             nameBox.setVisible(false);
             newPButton.setVisible(false);
+            returnButton.setVisible(false);
             title.setVisible(true);
             HTPButton.setVisible(true);
             playButton.setVisible(true);
@@ -201,8 +211,19 @@ public class HomeScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_nameBoxActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        // TODO add your handling code here:
+        nameBox.setVisible(false);
+        newPButton.setVisible(false);
+        returnButton.setVisible(false);
+        title.setVisible(true);
+        HTPButton.setVisible(true);
+        playButton.setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void HTPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HTPButtonMouseClicked
+        title.setVisible(false);
+        playButton.setVisible(false);
+        newPButton.setVisible(false);
+    }//GEN-LAST:event_HTPButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,20 +10,16 @@ public class Hanafuda {
     private static TreeSet<Player> playerList = new TreeSet<>(new PlayerComparator());
     private static Player current;
     //although searching can be slower, I want it in descending score order
-    private static final JPanel[] jp = new JPanel[12];
     
     public static void main(String[] args) throws FileNotFoundException {
         Card.createDeck();
+        Combination.initializeCombos();
         File settings = new File("Settings.txt");
         Hanafuda.getSettings(settings);
         File gameDataCheck = new File("GameData.txt");
         checkGameData(gameDataCheck);
         AppScreen as = new AppScreen();
         as.setVisible(true);
-        //HomeScreen hs = new HomeScreen();
-        //TestPanel test = new TestPanel();
-        //test.setVisible(true);
-        //hs.setVisible(true);
         Hanafuda.saveData(settings);
     }
     

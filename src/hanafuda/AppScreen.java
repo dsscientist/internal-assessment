@@ -14,6 +14,7 @@ public class AppScreen extends javax.swing.JFrame {
     
     public AppScreen() {
         initComponents();
+        initializeScreens();
         this.setSize(975, 580);
         JLayeredPane lp = new JLayeredPane();
         HomeScreenBgrd hsb = new HomeScreenBgrd();
@@ -31,6 +32,10 @@ public class AppScreen extends javax.swing.JFrame {
         this.add(lp);
         lp.setSize(960, 540);
         lp.setVisible(true);
+        // test code below to be integrated properly later
+        HTPScreen htps = new HTPScreen();
+        lp.add(htps, 2);
+        lp.moveToFront(htps);
     }
 
     /**
@@ -91,6 +96,10 @@ public class AppScreen extends javax.swing.JFrame {
                 new AppScreen().setVisible(true);
             }
         });
+    }
+    
+    public void initializeScreens() {
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
