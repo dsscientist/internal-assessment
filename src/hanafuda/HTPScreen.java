@@ -6,16 +6,20 @@
 package hanafuda;
 
 import javax.swing.*;
+import java.util.Scanner;
+import java.io.*;
 
 public class HTPScreen extends javax.swing.JPanel {
 
     /**
      * Creates new form HTPScreen
      */
-    public HTPScreen() {
+    public HTPScreen() throws FileNotFoundException {
         initComponents();
         this.setSize(950, 540);
-        
+        htpText.setOpaque(false);
+        htpText.setEditable(false);
+        setHTPText();
     }
 
     /**
@@ -27,37 +31,41 @@ public class HTPScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollyPane = new javax.swing.JScrollPane();
+        htpText = new javax.swing.JTextArea();
 
-        jScrollPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                jScrollPane1MouseWheelMoved(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(950, 540));
+
+        scrollyPane.setOpaque(false);
+
+        htpText.setBackground(new java.awt.Color(155, 255, 193));
+        htpText.setColumns(20);
+        htpText.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 20)); // NOI18N
+        htpText.setRows(5);
+        scrollyPane.setViewportView(htpText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(scrollyPane, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(scrollyPane, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jScrollPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPane1MouseWheelMoved
-        int notch = evt.getWheelRotation();
-        System.out.println(notch);
-    }//GEN-LAST:event_jScrollPane1MouseWheelMoved
-
+    public void setHTPText() throws FileNotFoundException {
+        File instruct = new File("HowToPlay.txt");
+        Scanner line = new Scanner(instruct);
+        while (line.hasNextLine()) {
+            htpText.append(line.nextLine() + "\n");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea htpText;
+    private javax.swing.JScrollPane scrollyPane;
     // End of variables declaration//GEN-END:variables
 }

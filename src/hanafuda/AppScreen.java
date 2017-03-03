@@ -6,13 +6,16 @@
 package hanafuda;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class AppScreen extends javax.swing.JFrame {
     
     private static final javax.swing.JPanel[] screens = new javax.swing.JPanel[2];
     
-    public AppScreen() {
+    public AppScreen() throws FileNotFoundException {
         initComponents();
         initializeScreens();
         this.setSize(975, 580);
@@ -33,6 +36,7 @@ public class AppScreen extends javax.swing.JFrame {
         lp.setSize(960, 540);
         lp.setVisible(true);
         // test code below to be integrated properly later
+        lp.remove(hs);
         HTPScreen htps = new HTPScreen();
         lp.add(htps, 2);
         lp.moveToFront(htps);
@@ -93,7 +97,11 @@ public class AppScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppScreen().setVisible(true);
+                try {
+                    new AppScreen().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(AppScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
