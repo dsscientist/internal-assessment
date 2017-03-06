@@ -1,7 +1,10 @@
 How to Play
 
-You make matches
+Objective:
+	After 12 rounds, acquire more points than your opponent by making special combinations
 
-blah blah blah
-
-12 different scoring combos
+Game Flow:
+	Dealer of cards starts game. Play alternates back and forth while each player makes his/her move until one
+	person makes a scoring combination and decides to end that round
+Cards:
+	There are 12 "suits" of cards to represent the 12 months

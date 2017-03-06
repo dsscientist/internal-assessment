@@ -16,7 +16,7 @@ public class HTPScreen extends javax.swing.JPanel {
      */
     public HTPScreen() throws FileNotFoundException {
         initComponents();
-        this.setSize(950, 540);
+        this.setSize(960, 540);
         htpText.setOpaque(false);
         htpText.setEditable(false);
         setHTPText();

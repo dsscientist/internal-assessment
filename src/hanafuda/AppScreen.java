@@ -13,33 +13,30 @@ import javax.swing.*;
 
 public class AppScreen extends javax.swing.JFrame {
     
-    private static final javax.swing.JPanel[] screens = new javax.swing.JPanel[2];
+    private static final int X_DIMEN = 960;
+    private static final int Y_DIMEN = 540;
+    private static final javax.swing.JPanel[] screens = new javax.swing.JPanel[5];
+    //0: HomeScreenBgrd
+    //1: HomeScreen
+    //2: HTPScreen
+    //3: GameBgrd
+    //4: GameScreen
     
     public AppScreen() throws FileNotFoundException {
         initComponents();
         initializeScreens();
         this.setSize(975, 580);
-        JLayeredPane lp = new JLayeredPane();
-        HomeScreenBgrd hsb = new HomeScreenBgrd();
-        lp.add(hsb, 1);
-        hsb.setSize(960, 540);
-        hsb.setVisible(true);
-        hsb.setLocation(0, 0);
-        hsb.setOpaque(false);
-        HomeScreen hs = new HomeScreen();
-        lp.add(hs, 2);
-        hs.setSize(960, 540);
-        hs.setVisible(true);
-        hs.setOpaque(false);
-        lp.moveToFront(hs);
-        this.add(lp);
-        lp.setSize(960, 540);
-        lp.setVisible(true);
-        // test code below to be integrated properly later
-        lp.remove(hs);
-        HTPScreen htps = new HTPScreen();
-        lp.add(htps, 2);
-        lp.moveToFront(htps);
+        JLayeredPane home = new JLayeredPane();
+        home.add(screens[0], 1);
+        home.add(screens[1], 2);
+        home.add(screens[2], 2);
+        this.add(home);
+        home.setSize(960, 540);
+        JLayeredPane game = new JLayeredPane();
+        game.add(screens[3],1);
+        game.add(screens[4], 2);
+        this.add(game);
+        showScreen("home", home);
     }
 
     /**
@@ -106,8 +103,38 @@ public class AppScreen extends javax.swing.JFrame {
         });
     }
     
-    public void initializeScreens() {
-        
+    public void initializeScreens() throws FileNotFoundException {
+        screens[0] = new HomeScreenBgrd();
+        screens[1] = new HomeScreen();
+        screens[2] = new HTPScreen();
+        screens[3] = new GameBgrd();
+        screens[4] = new GameScreen();
+        for (int i = 0; i < screens.length; i++) {
+            screens[i].setLocation(0, 0);
+            screens[i].setSize(X_DIMEN, Y_DIMEN);
+            screens[i].setVisible(false);
+            screens[i].setOpaque(false);
+        }
+    }
+    
+    public void showScreen(String screenName, javax.swing.JLayeredPane lp) {
+        //0: HomeScreenBgrd
+        //1: HomeScreen
+        //2: HTPScreen
+        //3: GameBgrd
+        //4: GameScreen
+        switch(screenName) {
+            case "home":
+                lp.setVisible(true);
+                lp.moveToFront(screens[0]);
+                lp.moveToFront(screens[1]);
+            case "htp":
+                lp.setVisible(true);
+                lp.moveToFront(screens[2]);
+            case "game":
+                
+            case "highScore":
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
