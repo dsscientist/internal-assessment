@@ -57,7 +57,7 @@ public class HTPScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setHTPText() throws FileNotFoundException {
-        File instruct = new File("HowToPlay.txt");
+        File instruct = new File("HowToPlayJPN.txt");
         Scanner line = new Scanner(instruct);
         while (line.hasNextLine()) {
             htpText.append(line.nextLine() + "\n");
