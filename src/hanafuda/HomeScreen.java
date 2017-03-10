@@ -10,9 +10,7 @@ import javax.swing.BorderFactory;
 
 public class HomeScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form HomeScreen
-     */
+    
     public HomeScreen() {
         initComponents();
         title.setLocation(WIDTH, HEIGHT);
@@ -223,6 +221,8 @@ public class HomeScreen extends javax.swing.JPanel {
         title.setVisible(false);
         playButton.setVisible(false);
         newPButton.setVisible(false);
+        changePlayerButton.setVisible(false);
+        System.out.println(this.getParent());
     }//GEN-LAST:event_HTPButtonMouseClicked
 
 

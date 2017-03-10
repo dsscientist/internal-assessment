@@ -21,7 +21,8 @@ public class Card extends javax.swing.JPanel {
     public Card() {
         initComponents();
         this.setSize(51, 84);
-        cardPic.setVisible(false);
+        cardPic.setVisible(true);
+        this.setLocation(300, 300);
     }
     
     public static void createDeck() {
@@ -178,6 +179,7 @@ public class Card extends javax.swing.JPanel {
 
         cardPic = new javax.swing.JLabel();
 
+        cardPic.setText("Hello");
         cardPic.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 cardPicMouseDragged(evt);

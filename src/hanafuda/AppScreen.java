@@ -15,7 +15,9 @@ public class AppScreen extends javax.swing.JFrame {
     
     private static final int X_DIMEN = 960;
     private static final int Y_DIMEN = 540;
-    private static final javax.swing.JPanel[] screens = new javax.swing.JPanel[5];
+    private static final javax.swing.JPanel[] SCREENS = new javax.swing.JPanel[5];
+    private static final JLayeredPane HOME = new JLayeredPane();
+    private static final JLayeredPane GAME = new JLayeredPane();
     //0: HomeScreenBgrd
     //1: HomeScreen
     //2: HTPScreen
@@ -25,18 +27,13 @@ public class AppScreen extends javax.swing.JFrame {
     public AppScreen() throws FileNotFoundException {
         initComponents();
         initializeScreens();
+        initializePanes();
         this.setSize(975, 580);
-        JLayeredPane home = new JLayeredPane();
-        home.add(screens[0], 1);
-        home.add(screens[1], 2);
-        home.add(screens[2], 2);
-        this.add(home);
-        home.setSize(960, 540);
-        JLayeredPane game = new JLayeredPane();
-        game.add(screens[3],1);
-        game.add(screens[4], 2);
-        this.add(game);
-        showScreen("home", home);
+        this.add(HOME);
+        HOME.setSize(960, 540);
+        this.add(GAME);
+        GAME.setSize(960, 600);
+        showScreen("home");
     }
 
     /**
@@ -104,20 +101,28 @@ public class AppScreen extends javax.swing.JFrame {
     }
     
     public void initializeScreens() throws FileNotFoundException {
-        screens[0] = new HomeScreenBgrd();
-        screens[1] = new HomeScreen();
-        screens[2] = new HTPScreen();
-        screens[3] = new GameBgrd();
-        screens[4] = new GameScreen();
-        for (int i = 0; i < screens.length; i++) {
-            screens[i].setLocation(0, 0);
-            screens[i].setSize(X_DIMEN, Y_DIMEN);
-            screens[i].setVisible(false);
-            screens[i].setOpaque(false);
+        SCREENS[0] = new HomeScreenBgrd();
+        SCREENS[1] = new HomeScreen();
+        SCREENS[2] = new HTPScreen();
+        SCREENS[3] = new GameBgrd();
+        SCREENS[4] = new GameScreen();
+        for (int i = 0; i < SCREENS.length; i++) {
+            SCREENS[i].setLocation(0, 0);
+            SCREENS[i].setSize(X_DIMEN, Y_DIMEN);
+            SCREENS[i].setVisible(false);
+            SCREENS[i].setOpaque(false);
         }
     }
     
-    public void showScreen(String screenName, javax.swing.JLayeredPane lp) {
+    public void initializePanes() {
+        HOME.add(SCREENS[0], 1);
+        HOME.add(SCREENS[1], 2);
+        HOME.add(SCREENS[2], 2);
+        GAME.add(SCREENS[3],1);
+        GAME.add(SCREENS[4], 2);
+    }
+    
+    public void showScreen(String screenName) {
         //0: HomeScreenBgrd
         //1: HomeScreen
         //2: HTPScreen
@@ -125,15 +130,23 @@ public class AppScreen extends javax.swing.JFrame {
         //4: GameScreen
         switch(screenName) {
             case "home":
-                lp.setVisible(true);
-                lp.moveToFront(screens[0]);
-                lp.moveToFront(screens[1]);
+                GAME.setVisible(false);
+                HOME.setVisible(true);
+                SCREENS[0].setVisible(true);
+                SCREENS[1].setVisible(true);
+                HOME.moveToFront(SCREENS[0]);
+                HOME.moveToFront(SCREENS[1]);
+                break;
             case "htp":
-                lp.setVisible(true);
-                lp.moveToFront(screens[2]);
+                GAME.setVisible(false);
+                HOME.setVisible(true);
+                SCREENS[2].setVisible(true);
+                HOME.moveToFront(SCREENS[2]);
+                break;
             case "game":
-                
+                break;
             case "highScore":
+                break;
         }
     }
 

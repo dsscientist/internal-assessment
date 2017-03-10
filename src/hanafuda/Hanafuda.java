@@ -18,8 +18,13 @@ public class Hanafuda {
         Hanafuda.getSettings(settings);
         File gameDataCheck = new File("GameData.txt");
         checkGameData(gameDataCheck);
-        AppScreen as = new AppScreen();
-        as.setVisible(true);
+        //AppScreen as = new AppScreen();
+        //as.setVisible(true);
+        Test t = new Test();
+        t.setVisible(true);
+        Card c = Card.drawCard();
+        t.add(c);
+        c.setVisible(true);
         Hanafuda.saveData(settings);
     }
     
