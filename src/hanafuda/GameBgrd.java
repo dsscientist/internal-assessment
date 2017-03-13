@@ -5,17 +5,19 @@
  */
 package hanafuda;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author shirdav18
  */
 public class GameBgrd extends javax.swing.JPanel {
 
-    /**
-     * Creates new form GameBgrd
-     */
-    public GameBgrd() {
+    private static AppScreen parent;
+    
+    public GameBgrd(AppScreen jf) {
         initComponents();
+        parent = jf;
     }
 
     /**

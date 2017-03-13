@@ -5,17 +5,19 @@
  */
 package hanafuda;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author shirdav18
  */
 public class GameScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form GameScreen
-     */
-    public GameScreen() {
+    private static AppScreen parent;
+    
+    public GameScreen(AppScreen jf) {
         initComponents();
+        parent = jf;
     }
 
     /**

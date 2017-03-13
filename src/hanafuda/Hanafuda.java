@@ -12,19 +12,16 @@ public class Hanafuda {
     //although searching can be slower, I want it in descending score order
     
     public static void main(String[] args) throws FileNotFoundException {
-        Card.createDeck();
-        Combination.initializeCombos();
         File settings = new File("Settings.txt");
         Hanafuda.getSettings(settings);
         File gameDataCheck = new File("GameData.txt");
         checkGameData(gameDataCheck);
-        //AppScreen as = new AppScreen();
+        AppScreen as = new AppScreen();
         //as.setVisible(true);
+        Card.createDeck(as);
+        Combination.initializeCombos();
         Test t = new Test();
         t.setVisible(true);
-        Card c = Card.drawCard();
-        t.add(c);
-        c.setVisible(true);
         Hanafuda.saveData(settings);
     }
     

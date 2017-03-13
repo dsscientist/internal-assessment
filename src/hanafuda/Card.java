@@ -7,6 +7,8 @@ package hanafuda;
 
 import java.util.*;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Card extends javax.swing.JPanel {
 
@@ -16,25 +18,28 @@ public class Card extends javax.swing.JPanel {
     private String type;
     public ArrayList<String> combos = new ArrayList<>();
     private static Stack<Card> drawStack = new Stack<>();//tech. any collection would do
-    private ImageIcon picture;
+    private static final int WIDTH = 51;
+    private static final int HEIGHT = 84;
+    private static int mouseX;
+    private static int mouseY;
+    private static AppScreen parent;
     
-    public Card() {
+    public Card(AppScreen jf) {
         initComponents();
-        this.setSize(51, 84);
-        cardPic.setVisible(true);
+        this.setSize(WIDTH, HEIGHT);
         this.setLocation(300, 300);
+        parent = jf;
     }
     
-    public static void createDeck() {
+    public static void createDeck(AppScreen jf) {
         Card[][] deck = new Card[12][4]; //fastest way to initialize all cards
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 4; j++){
-                deck[i][j] = new Card();
+                deck[i][j] = new Card(jf);
                 deck[i][j].month = i + 1;
                 deck[i][j].day = j;
                 deck[i][j].setValue(j);
-                deck[i][j].picture = new ImageIcon(i + "." + j);
-                deck[i][j].cardPic.setIcon(deck[i][j].getPicture());
+                deck[i][j].cardPic.setIcon(new ImageIcon(i + "." + j + ".png"));
             }
         }
         deck[0][0].toBright();
@@ -151,10 +156,6 @@ public class Card extends javax.swing.JPanel {
         return type;
     }
     
-    public ImageIcon getPicture() {
-        return picture;
-    }
-    
     @Override
     public String toString() {
         return type + " card worth " + value + " points";
@@ -167,7 +168,11 @@ public class Card extends javax.swing.JPanel {
     public static Card drawCard() {
         return drawStack.pop();
     }
-
+    
+    public JLabel getPic() {
+        return cardPic;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -179,15 +184,15 @@ public class Card extends javax.swing.JPanel {
 
         cardPic = new javax.swing.JLabel();
 
-        cardPic.setText("Hello");
-        cardPic.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                cardPicMouseDragged(evt);
-            }
-        });
+        cardPic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cardPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cardPicMousePressed(evt);
+            }
+        });
+        cardPic.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                cardPicMouseDragged(evt);
             }
         });
 
@@ -204,10 +209,15 @@ public class Card extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cardPicMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMousePressed
+        
     }//GEN-LAST:event_cardPicMousePressed
 
     private void cardPicMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseDragged
-        this.getParent().setLocation(evt.getX(), evt.getY());
+        boolean inXBound = 960 > evt.getXOnScreen() && evt.getXOnScreen() > 0;
+        boolean inYBound = 540 > evt.getYOnScreen() && evt.getYOnScreen() > 0;
+        if (inXBound && inYBound) {
+            this.getParent().setLocation(evt.getXOnScreen() - 32, evt.getYOnScreen() - 70);
+        }
     }//GEN-LAST:event_cardPicMouseDragged
 
 

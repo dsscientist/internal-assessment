@@ -11,15 +11,15 @@ import java.io.*;
 
 public class HTPScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form HTPScreen
-     */
-    public HTPScreen() throws FileNotFoundException {
+    private static AppScreen parent;
+    
+    public HTPScreen(AppScreen jf) throws FileNotFoundException {
         initComponents();
         this.setSize(960, 540);
         htpText.setOpaque(false);
         htpText.setEditable(false);
         setHTPText();
+        parent = jf;
     }
 
     /**

@@ -5,17 +5,19 @@
  */
 package hanafuda;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author shirdav18
  */
 public class HomeScreenBgrd extends javax.swing.JPanel {
 
-    /**
-     * Creates new form HomeScreen
-     */
-    public HomeScreenBgrd() {
+    private static JFrame parent;
+    
+    public HomeScreenBgrd(JFrame jf) {
         initComponents();
+        parent = jf;
     }
 
     /**

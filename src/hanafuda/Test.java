@@ -16,7 +16,12 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
-        
+        this.setSize(960, 601);
+        Card c = Card.drawCard();
+        this.add(c);
+        c.setVisible(true);
+        c.getPic().setVisible(true);
+        c.setLocation(0, 0);
     }
 
     /**

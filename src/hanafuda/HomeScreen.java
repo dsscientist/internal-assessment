@@ -7,11 +7,13 @@ package hanafuda;
 
 import java.awt.*;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 
 public class HomeScreen extends javax.swing.JPanel {
 
+    private static AppScreen parent;
     
-    public HomeScreen() {
+    public HomeScreen(AppScreen jf) {
         initComponents();
         title.setLocation(WIDTH, HEIGHT);
         title.setForeground(new Color(226,34,33));
@@ -26,6 +28,7 @@ public class HomeScreen extends javax.swing.JPanel {
         newPButton.setVisible(false);
         newPButton.setBackground(new Color(233,185,234));
         returnButton.setVisible(false);
+        parent = jf;
     }
     
     private void setPlayerName(String name) {

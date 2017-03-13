@@ -13,8 +13,8 @@ import javax.swing.*;
 
 public class AppScreen extends javax.swing.JFrame {
     
-    private static final int X_DIMEN = 960;
-    private static final int Y_DIMEN = 540;
+    public static final int X_DIMEN = 960;
+    public static final int Y_DIMEN = 540;
     private static final javax.swing.JPanel[] SCREENS = new javax.swing.JPanel[5];
     private static final JLayeredPane HOME = new JLayeredPane();
     private static final JLayeredPane GAME = new JLayeredPane();
@@ -30,9 +30,9 @@ public class AppScreen extends javax.swing.JFrame {
         initializePanes();
         this.setSize(975, 580);
         this.add(HOME);
-        HOME.setSize(960, 540);
+        HOME.setSize(X_DIMEN, Y_DIMEN);
         this.add(GAME);
-        GAME.setSize(960, 600);
+        GAME.setSize(X_DIMEN, Y_DIMEN);
         showScreen("home");
     }
 
@@ -101,11 +101,11 @@ public class AppScreen extends javax.swing.JFrame {
     }
     
     public void initializeScreens() throws FileNotFoundException {
-        SCREENS[0] = new HomeScreenBgrd();
-        SCREENS[1] = new HomeScreen();
-        SCREENS[2] = new HTPScreen();
-        SCREENS[3] = new GameBgrd();
-        SCREENS[4] = new GameScreen();
+        SCREENS[0] = new HomeScreenBgrd(this);
+        SCREENS[1] = new HomeScreen(this);
+        SCREENS[2] = new HTPScreen(this);
+        SCREENS[3] = new GameBgrd(this);
+        SCREENS[4] = new GameScreen(this);
         for (int i = 0; i < SCREENS.length; i++) {
             SCREENS[i].setLocation(0, 0);
             SCREENS[i].setSize(X_DIMEN, Y_DIMEN);
