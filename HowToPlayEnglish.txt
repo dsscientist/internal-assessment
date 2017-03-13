@@ -1,0 +1,22 @@
+Hanafuda Rules
+
+Objective:
+	-Score more points than your opponent after 12 rounds by making special combination
+Card Matching:
+	-There are 12 separate suits to represent the 12 seasons, each with four cards
+	-Cards are matched by the same suit, as specified by the background of the card
+Start of Game:
+	-Each player is dealt eight cards and eight cards in the center; the remaining cards are set in the 
+	        middle as the draw pile
+Player Turn:
+	1. Match card from hand, if possible; otherwise, place one card from hand on table
+	2. Flip one card from draw pile and match, if possible; otherwise, place it on the table
+	3. Take matched pairs and place it on your side of table
+	4. If special combination made, say "stop" or "koi-koi"
+Ending the Game:
+	-When one player makes a combination, he can either say "stop" or "koi-koi" (come on)
+	        -Stop: the round ends and the winner receives the alotted points from that combo
+	        -Koi-koi: the player chooses to risk doubling his score if he makes another combo before
+		 his/her opponent makes one; if he/she fails, the other player doubles his score for that 
+		 round
+	-The winner of that round becomes the new dealer
