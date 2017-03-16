@@ -4,18 +4,16 @@ import java.util.*;
 
 public class Player{
     private String name;
-    private Combination[] currentCombos;
+    private Combination[] currentCombos = (Combination[]) Combination.resetCombos();
     private int gamesWon;
     private int highScore;
     
     public Player(String name) {
         this.name = name;
-        currentCombos = Combination.resetCombos();
     }
     
     public Player(String name, int games, int score) {
         this.name = name;
-        currentCombos = Combination.resetCombos();
         gamesWon = games;
         highScore = score;
     }

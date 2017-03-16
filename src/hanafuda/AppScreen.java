@@ -26,6 +26,7 @@ public class AppScreen extends javax.swing.JFrame {
     
     public AppScreen() throws FileNotFoundException {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         initializeScreens();
         initializePanes();
         this.setSize(975, 580);
@@ -46,6 +47,11 @@ public class AppScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,6 +66,15 @@ public class AppScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            Hanafuda.saveData(Hanafuda.SETTINGS);
+            System.exit(0);
+        } catch (FileNotFoundException ex) {
+            System.out.println("No File at Location");;
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

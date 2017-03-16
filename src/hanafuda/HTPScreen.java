@@ -17,8 +17,9 @@ public class HTPScreen extends javax.swing.JPanel {
         initComponents();
         this.setSize(960, 540);
         htpText.setOpaque(false);
-        htpText.setEditable(false);
+        htpText.setVisible(true);
         setHTPText();
+        htpText.setEditable(false);
         parent = jf;
     }
 
@@ -57,11 +58,12 @@ public class HTPScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setHTPText() throws FileNotFoundException {
-        File instruct = new File("HowToPlayJPN.txt");
+        File instruct = new File("HowToPlay" + Hanafuda.language + ".txt");
         Scanner line = new Scanner(instruct);
         while (line.hasNextLine()) {
             htpText.append(line.nextLine() + "\n");
         }
+        System.out.println(htpText.getText());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -28,6 +28,8 @@ public class HomeScreen extends javax.swing.JPanel {
         newPButton.setVisible(false);
         newPButton.setBackground(new Color(233,185,234));
         returnButton.setVisible(false);
+        newPlayerField.setText("Enter Name Here");
+        newPlayerField.setVisible(false);
         parent = jf;
     }
     
@@ -53,6 +55,7 @@ public class HomeScreen extends javax.swing.JPanel {
         nameBox = new javax.swing.JTextField();
         newPButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
+        newPlayerField = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(940, 950));
 
@@ -115,6 +118,11 @@ public class HomeScreen extends javax.swing.JPanel {
         newPButton.setBackground(new java.awt.Color(204, 204, 204));
         newPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         newPButton.setText("New Player");
+        newPButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newPButtonMouseClicked(evt);
+            }
+        });
 
         returnButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         returnButton.setText("Return");
@@ -122,6 +130,14 @@ public class HomeScreen extends javax.swing.JPanel {
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnButtonActionPerformed(evt);
+            }
+        });
+
+        newPlayerField.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        newPlayerField.setText("New Player Here");
+        newPlayerField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPlayerFieldActionPerformed(evt);
             }
         });
 
@@ -141,7 +157,7 @@ public class HomeScreen extends javax.swing.JPanel {
                                 .addGap(10, 10, 10)
                                 .addComponent(currentPName))
                             .addComponent(currentPlayerLabel))))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -150,7 +166,8 @@ public class HomeScreen extends javax.swing.JPanel {
                     .addComponent(changePlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(HTPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newPlayerField))
                 .addGap(376, 376, 376))
         );
         layout.setVerticalGroup(
@@ -162,7 +179,7 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addComponent(currentPName)
                 .addGap(48, 48, 48)
                 .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 424, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
                 .addComponent(returnButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(newPButton)
@@ -174,7 +191,9 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addComponent(changePlayerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newPlayerField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,6 +202,7 @@ public class HomeScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_HTPButtonActionPerformed
 
     private void changePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePlayerButtonMouseClicked
+        changePlayerButton.setVisible(false);
         nameBox.setVisible(true);
         newPButton.setVisible(true);
         returnButton.setVisible(true);
@@ -218,6 +238,8 @@ public class HomeScreen extends javax.swing.JPanel {
         title.setVisible(true);
         HTPButton.setVisible(true);
         playButton.setVisible(true);
+        changePlayerButton.setVisible(true);
+        newPlayerField.setVisible(false);
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void HTPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HTPButtonMouseClicked
@@ -225,8 +247,31 @@ public class HomeScreen extends javax.swing.JPanel {
         playButton.setVisible(false);
         newPButton.setVisible(false);
         changePlayerButton.setVisible(false);
-        System.out.println(this.getParent());
+        HTPButton.setVisible(false);
+        parent.showScreen("htp");
     }//GEN-LAST:event_HTPButtonMouseClicked
+
+    private void newPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPButtonMouseClicked
+        newPlayerField.setVisible(true);
+        newPButton.setVisible(false);
+        nameBox.setVisible(false);
+        this.repaint();
+    }//GEN-LAST:event_newPButtonMouseClicked
+
+    private void newPlayerFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPlayerFieldActionPerformed
+        Player p = new Player(newPlayerField.getText());
+        Hanafuda.playerList.add(p);
+        Hanafuda.setPlayer(p.getName());
+        currentPName.setText(p.getName());
+        newPButton.setVisible(false);
+        returnButton.setVisible(false);
+        title.setVisible(true);
+        HTPButton.setVisible(true);
+        playButton.setVisible(true);
+        changePlayerButton.setVisible(true);
+        newPlayerField.setVisible(false);
+        this.repaint();
+    }//GEN-LAST:event_newPlayerFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -236,6 +281,7 @@ public class HomeScreen extends javax.swing.JPanel {
     private javax.swing.JLabel currentPlayerLabel;
     private javax.swing.JTextField nameBox;
     private javax.swing.JButton newPButton;
+    private javax.swing.JTextField newPlayerField;
     private javax.swing.JButton playButton;
     private javax.swing.JButton returnButton;
     private javax.swing.JLabel title;

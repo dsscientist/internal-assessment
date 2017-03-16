@@ -38,7 +38,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="244" max="32767" attributes="0"/>
+              <EmptySpace pref="227" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -49,6 +49,7 @@
                   <Component id="HTPButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="playButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="returnButton" max="32767" attributes="0"/>
+                  <Component id="newPlayerField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
           </Group>
@@ -63,7 +64,7 @@
               <Component id="currentPName" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Component id="title" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="424" max="32767" attributes="0"/>
+              <EmptySpace pref="419" max="32767" attributes="0"/>
               <Component id="returnButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="newPButton" min="-2" max="-2" attributes="0"/>
@@ -75,7 +76,9 @@
               <Component id="changePlayerButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="nameBox" min="-2" pref="28" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="newPlayerField" min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -184,6 +187,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="New Player"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newPButtonMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="returnButton">
       <Properties>
@@ -195,6 +201,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="newPlayerField">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Copperplate Gothic Bold" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="New Player Here"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newPlayerFieldActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

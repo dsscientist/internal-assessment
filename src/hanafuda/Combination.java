@@ -31,7 +31,7 @@ public class Combination {
     }
     
     public static Combination[] resetCombos() {
-        return scoringCombos;
+        return (Combination[]) scoringCombos.clone();
     }
     
     @Override

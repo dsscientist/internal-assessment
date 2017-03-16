@@ -5,6 +5,7 @@
  */
 package hanafuda;
 
+import java.net.URL;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ public class Card extends javax.swing.JPanel {
     private int value;
     private String type;
     public ArrayList<String> combos = new ArrayList<>();
+    private static Card[][] cardList;
     private static Stack<Card> drawStack = new Stack<>();//tech. any collection would do
     private static final int WIDTH = 51;
     private static final int HEIGHT = 84;
@@ -29,6 +31,7 @@ public class Card extends javax.swing.JPanel {
         this.setSize(WIDTH, HEIGHT);
         this.setLocation(300, 300);
         parent = jf;
+        cardPic.setVisible(true);
     }
     
     public static void createDeck(AppScreen jf) {
@@ -40,6 +43,7 @@ public class Card extends javax.swing.JPanel {
                 deck[i][j].day = j;
                 deck[i][j].setValue(j);
                 deck[i][j].cardPic.setIcon(new ImageIcon(i + "." + j + ".png"));
+                System.out.println("");
             }
         }
         deck[0][0].toBright();
@@ -76,11 +80,7 @@ public class Card extends javax.swing.JPanel {
         deck[5][0].combos.add("\u732a\u9e7f\u8776");
         deck[6][0].combos.add("\u732a\u9e7f\u8776");
         deck[9][0].combos.add("\u732a\u9e7f\u8776");
-        for (Card[] e: deck) {
-            for (Card f: e) {
-                drawStack.push(f);
-            }
-        }
+        cardList = deck;
         shuffleDeck();
     }
     
@@ -122,6 +122,11 @@ public class Card extends javax.swing.JPanel {
     }
     
     public static void shuffleDeck() {
+        for (Card[] e: cardList) {
+            for (Card f: e) {
+                drawStack.push(f);
+            }
+        }
         Collections.shuffle(drawStack);
     }
     
@@ -184,6 +189,7 @@ public class Card extends javax.swing.JPanel {
 
         cardPic = new javax.swing.JLabel();
 
+        cardPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hanafuda/1.0.png"))); // NOI18N
         cardPic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cardPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -200,11 +206,11 @@ public class Card extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

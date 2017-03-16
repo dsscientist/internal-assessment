@@ -6,23 +6,20 @@ import javax.swing.*;
 
 public class Hanafuda {
 
-    private static String language;
-    private static TreeSet<Player> playerList = new TreeSet<>(new PlayerComparator());
+    public static String language;
+    public static TreeSet<Player> playerList = new TreeSet<>(new PlayerComparator());
     private static Player current;
+    public static final File SETTINGS = new File("Settings.txt");
     //although searching can be slower, I want it in descending score order
     
     public static void main(String[] args) throws FileNotFoundException {
-        File settings = new File("Settings.txt");
-        Hanafuda.getSettings(settings);
-        File gameDataCheck = new File("GameData.txt");
-        checkGameData(gameDataCheck);
+        Hanafuda.getSettings(SETTINGS);
         AppScreen as = new AppScreen();
-        //as.setVisible(true);
+        as.setVisible(true);
         Card.createDeck(as);
         Combination.initializeCombos();
         Test t = new Test();
         t.setVisible(true);
-        Hanafuda.saveData(settings);
     }
     
     public static void getSettings(File settings) throws FileNotFoundException {
@@ -48,15 +45,6 @@ public class Hanafuda {
             ps.println(encrypt(p.toString()));
         }
     }
-    
-    public static void checkGameData(File gameDataCheck) throws FileNotFoundException{
-        PrintStream ps = new PrintStream(gameDataCheck);
-        ps.println(language);
-        ps.println(current.getName());
-        for (Player p: playerList) {
-            ps.println(p.toString());
-        }
-    }// make sure to take this out before you submit project...
     
     public static boolean setPlayer(String name) {
         Iterator itr = playerList.iterator();
@@ -86,7 +74,7 @@ public class Hanafuda {
         }
         return unknown;
     }
-    
+       
     public static Player getPlayer() {
         return current;
     }
