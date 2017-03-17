@@ -223,13 +223,14 @@ public class Card extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cardPicMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMousePressed
-        
+    
     }//GEN-LAST:event_cardPicMousePressed
 
     private void cardPicMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseDragged
         boolean inXBound = 950 > evt.getX() && evt.getX() > 10;
         boolean inYBound = 530 > evt.getY() && evt.getY() > 10;
         if (inXBound && inYBound) {
+            System.out.println((evt.getXOnScreen() - 100) + " " + (evt.getYOnScreen() - 370));
             this.getParent().setLocation(evt.getXOnScreen() - 100, evt.getYOnScreen() - 370);
         }
     }//GEN-LAST:event_cardPicMouseDragged

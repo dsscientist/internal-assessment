@@ -15,6 +15,8 @@ public class Hanafuda {
     public static void main(String[] args) throws FileNotFoundException {
         Hanafuda.getSettings(SETTINGS);
         Card.createDeck();
+        Test t = new Test();
+        t.setVisible(true);
         AppScreen as = new AppScreen();
         as.setVisible(true);
         Combination.initializeCombos();
@@ -42,6 +44,7 @@ public class Hanafuda {
         for (Player p: playerList) {
             ps.println(encrypt(p.toString()));
         }
+        System.out.println("Game Data Saved.");
     }
     
     public static boolean setPlayer(String name) {

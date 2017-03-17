@@ -34,6 +34,7 @@ public class GameScreen extends javax.swing.JPanel {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 4; j++) {
                 Card c = Card.drawCard();
+                c.getPic().setVisible(true);
                 this.add(c);
                 c.setLocation(200 + 60 * j, 200 + 90 * i);
                 c.setVisible(true);
@@ -41,6 +42,7 @@ public class GameScreen extends javax.swing.JPanel {
         }
         for (int i = 0; i < 8; i++) {
             Card c = Card.drawCard();
+            c.getPic().setVisible(true);
             this.add(c);
             c.setLocation(80 + 60 * i, 420);
             c.setVisible(true);
