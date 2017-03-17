@@ -43,6 +43,11 @@ public class HTPScreen extends javax.swing.JPanel {
         htpText.setColumns(20);
         htpText.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 20)); // NOI18N
         htpText.setRows(5);
+        htpText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                htpTextKeyTyped(evt);
+            }
+        });
         scrollyPane.setViewportView(htpText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -57,9 +62,13 @@ public class HTPScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void htpTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_htpTextKeyTyped
+        parent.showScreen("home");
+    }//GEN-LAST:event_htpTextKeyTyped
+
     public void setHTPText() throws FileNotFoundException {
         File instruct = new File("HowToPlay" + Hanafuda.language + ".txt");
-        Scanner line = new Scanner(instruct);
+        Scanner line = new Scanner(instruct, "UTF-8");
         while (line.hasNextLine()) {
             htpText.append(line.nextLine() + "\n");
         }

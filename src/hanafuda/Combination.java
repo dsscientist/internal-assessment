@@ -4,10 +4,10 @@ public class Combination {
     private static Combination[] scoringCombos = new Combination[12];
     //perhaps put this array into some other object (like player object?)
     private static int currentScore = 0;
-    private String name;
+    private String name;//stored in unicode for Japanese
     private int currentNum = 0;
-    private final int COMBO_COMPLETE;
-    private final int COMBO_VALUE;
+    private final int COMBO_COMPLETE;//how many cards necessary to be acheived (exact cards stored in Card class)
+    private final int COMBO_VALUE;//how many points the combo is worth
     
     public Combination(String name, int finalVal, int value) {
         this.name = name;

@@ -14,15 +14,13 @@ public class Hanafuda {
     
     public static void main(String[] args) throws FileNotFoundException {
         Hanafuda.getSettings(SETTINGS);
+        Card.createDeck();
         AppScreen as = new AppScreen();
         as.setVisible(true);
-        Card.createDeck(as);
         Combination.initializeCombos();
-        Test t = new Test();
-        t.setVisible(true);
     }
     
-    public static void getSettings(File settings) throws FileNotFoundException {
+    public static void getSettings(File settings) throws FileNotFoundException {//read from file
         Scanner scanLine = new Scanner(settings);
         language = decrypt(scanLine.nextLine());
         String pName = decrypt(scanLine.nextLine());// make sure to change dummy data so that it has name
@@ -37,7 +35,7 @@ public class Hanafuda {
         setPlayer(pName);
     }
     
-    public static void saveData(File settings) throws FileNotFoundException{
+    public static void saveData(File settings) throws FileNotFoundException{//write to file
         PrintStream ps = new PrintStream(settings);
         ps.println(encrypt(language));
         ps.println(encrypt(current.getName()));

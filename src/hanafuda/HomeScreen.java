@@ -7,6 +7,7 @@ package hanafuda;
 
 import java.awt.*;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class HomeScreen extends javax.swing.JPanel {
@@ -81,6 +82,11 @@ public class HomeScreen extends javax.swing.JPanel {
         playButton.setBackground(new java.awt.Color(255, 255, 255));
         playButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
         playButton.setText("Play");
+        playButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                playButtonMouseClicked(evt);
+            }
+        });
 
         changePlayerButton.setBackground(new java.awt.Color(255, 153, 255));
         changePlayerButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
@@ -224,6 +230,7 @@ public class HomeScreen extends javax.swing.JPanel {
             title.setVisible(true);
             HTPButton.setVisible(true);
             playButton.setVisible(true);
+            changePlayerButton.setVisible(true);
             currentPName.setText(Hanafuda.getPlayer().getName());
             nameBox.setText("Enter name here");
         } else {
@@ -243,12 +250,7 @@ public class HomeScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void HTPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HTPButtonMouseClicked
-        title.setVisible(false);
-        playButton.setVisible(false);
-        newPButton.setVisible(false);
-        changePlayerButton.setVisible(false);
-        HTPButton.setVisible(false);
-        parent.showScreen("htp");
+        parent.showScreen("htpH");
     }//GEN-LAST:event_HTPButtonMouseClicked
 
     private void newPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPButtonMouseClicked
@@ -272,6 +274,16 @@ public class HomeScreen extends javax.swing.JPanel {
         newPlayerField.setVisible(false);
         this.repaint();
     }//GEN-LAST:event_newPlayerFieldActionPerformed
+
+    private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
+        HTPButton.setVisible(false);
+        changePlayerButton.setVisible(false);
+        currentPName.setVisible(false);
+        currentPlayerLabel.setVisible(false);
+        playButton.setVisible(false);
+        title.setVisible(false);
+        parent.showScreen("game");
+    }//GEN-LAST:event_playButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

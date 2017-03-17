@@ -6,6 +6,8 @@
 package hanafuda;
 
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +17,7 @@ public class AppScreen extends javax.swing.JFrame {
     
     public static final int X_DIMEN = 960;
     public static final int Y_DIMEN = 540;
-    private static final javax.swing.JPanel[] SCREENS = new javax.swing.JPanel[5];
+    private static final javax.swing.JPanel[] SCREENS = new javax.swing.JPanel[6];
     private static final JLayeredPane HOME = new JLayeredPane();
     private static final JLayeredPane GAME = new JLayeredPane();
     //0: HomeScreenBgrd
@@ -23,13 +25,15 @@ public class AppScreen extends javax.swing.JFrame {
     //2: HTPScreen
     //3: GameBgrd
     //4: GameScreen
+    //5: HTPScreen
     
     public AppScreen() throws FileNotFoundException {
         initComponents();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setLocation(50, 50);
         initializeScreens();
         initializePanes();
-        this.setSize(975, 580);
+        this.setSize(X_DIMEN + 15,Y_DIMEN + 40);
         this.add(HOME);
         HOME.setSize(X_DIMEN, Y_DIMEN);
         this.add(GAME);
@@ -50,6 +54,11 @@ public class AppScreen extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+        });
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
             }
         });
 
@@ -75,6 +84,9 @@ public class AppScreen extends javax.swing.JFrame {
             System.out.println("No File at Location");;
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+    }//GEN-LAST:event_formWindowStateChanged
 
     /**
      * @param args the command line arguments
@@ -121,6 +133,7 @@ public class AppScreen extends javax.swing.JFrame {
         SCREENS[2] = new HTPScreen(this);
         SCREENS[3] = new GameBgrd(this);
         SCREENS[4] = new GameScreen(this);
+        SCREENS[5] = new HTPScreen(this);
         for (int i = 0; i < SCREENS.length; i++) {
             SCREENS[i].setLocation(0, 0);
             SCREENS[i].setSize(X_DIMEN, Y_DIMEN);
@@ -132,9 +145,10 @@ public class AppScreen extends javax.swing.JFrame {
     public void initializePanes() {
         HOME.add(SCREENS[0], 1);
         HOME.add(SCREENS[1], 2);
-        HOME.add(SCREENS[2], 2);
-        GAME.add(SCREENS[3],1);
+        HOME.add(SCREENS[2], 3);
+        GAME.add(SCREENS[3], 1);
         GAME.add(SCREENS[4], 2);
+        GAME.add(SCREENS[5], 3);
     }
     
     public void showScreen(String screenName) {
@@ -143,6 +157,7 @@ public class AppScreen extends javax.swing.JFrame {
         //2: HTPScreen
         //3: GameBgrd
         //4: GameScreen
+        //5: HTPScreen
         switch(screenName) {
             case "home":
                 GAME.setVisible(false);
@@ -152,17 +167,36 @@ public class AppScreen extends javax.swing.JFrame {
                 HOME.moveToFront(SCREENS[0]);
                 HOME.moveToFront(SCREENS[1]);
                 break;
-            case "htp":
+            case "htpH":
                 GAME.setVisible(false);
                 HOME.setVisible(true);
                 SCREENS[2].setVisible(true);
                 HOME.moveToFront(SCREENS[2]);
                 break;
-            case "game":
+            case "htpG":
+                HOME.setVisible(false);
+                GAME.setVisible(true);
+                SCREENS[5].setVisible(true);
+                HOME.moveToFront(SCREENS[5]);
                 break;
-            case "highScore":
+            case "game":
+                HOME.setVisible(false);
+                GAME.setVisible(true);
+                SCREENS[3].setVisible(true);
+                SCREENS[4].setVisible(true);
+                GAME.moveToFront(SCREENS[3]);
+                GAME.moveToFront(SCREENS[4]);
                 break;
         }
+        
+        this.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                setSize(X_DIMEN + 15,Y_DIMEN + 40);
+            }
+            public void componentMoved(ComponentEvent e) {
+                setLocation(50,50);
+            }
+      });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

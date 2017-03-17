@@ -7,6 +7,8 @@ package hanafuda;
 
 import java.net.URL;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,26 +26,23 @@ public class Card extends javax.swing.JPanel {
     private static final int HEIGHT = 84;
     private static int mouseX;
     private static int mouseY;
-    private static AppScreen parent;
     
-    public Card(AppScreen jf) {
+    public Card(int i, int j) {
         initComponents();
+        month = i + 1;
+        day = j;
+        setValue(j);
+        cardPic.setIcon(new ImageIcon(getClass().getResource(month + "." + day + ".png")));
         this.setSize(WIDTH, HEIGHT);
-        this.setLocation(300, 300);
-        parent = jf;
+        this.setLocation(0, 0);
         cardPic.setVisible(true);
     }
     
-    public static void createDeck(AppScreen jf) {
+    public static void createDeck() {
         Card[][] deck = new Card[12][4]; //fastest way to initialize all cards
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 4; j++){
-                deck[i][j] = new Card(jf);
-                deck[i][j].month = i + 1;
-                deck[i][j].day = j;
-                deck[i][j].setValue(j);
-                deck[i][j].cardPic.setIcon(new ImageIcon(i + "." + j + ".png"));
-                System.out.println("");
+                deck[i][j] = new Card(i, j);
             }
         }
         deck[0][0].toBright();
@@ -84,7 +83,7 @@ public class Card extends javax.swing.JPanel {
         shuffleDeck();
     }
     
-    private void setValue(int n) {
+    private void setValue(int n) {//base level data assignment
         switch(n) {
             case 3:
                 value = 0;
@@ -153,6 +152,10 @@ public class Card extends javax.swing.JPanel {
         return month;
     }
     
+    public int getDay() {
+        return day;
+    }
+    
     public int getValue() {
         return value;
     }
@@ -189,9 +192,14 @@ public class Card extends javax.swing.JPanel {
 
         cardPic = new javax.swing.JLabel();
 
-        cardPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hanafuda/1.0.png"))); // NOI18N
+        setBackground(new java.awt.Color(226, 34, 33));
+        setPreferredSize(new java.awt.Dimension(51, 84));
+
         cardPic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cardPic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cardPicMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cardPicMousePressed(evt);
             }
@@ -206,11 +214,11 @@ public class Card extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cardPic, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,12 +227,15 @@ public class Card extends javax.swing.JPanel {
     }//GEN-LAST:event_cardPicMousePressed
 
     private void cardPicMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseDragged
-        boolean inXBound = 960 > evt.getXOnScreen() && evt.getXOnScreen() > 0;
-        boolean inYBound = 540 > evt.getYOnScreen() && evt.getYOnScreen() > 0;
+        boolean inXBound = 950 > evt.getX() && evt.getX() > 10;
+        boolean inYBound = 530 > evt.getY() && evt.getY() > 10;
         if (inXBound && inYBound) {
-            this.getParent().setLocation(evt.getXOnScreen() - 32, evt.getYOnScreen() - 70);
+            this.getParent().setLocation(evt.getXOnScreen() - 100, evt.getYOnScreen() - 370);
         }
     }//GEN-LAST:event_cardPicMouseDragged
+
+    private void cardPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseClicked
+    }//GEN-LAST:event_cardPicMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

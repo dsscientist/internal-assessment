@@ -14,10 +14,44 @@ import javax.swing.JFrame;
 public class GameScreen extends javax.swing.JPanel {
 
     private static AppScreen parent;
+    private int playerX = 550;
+    private int computerX = 550;
     
     public GameScreen(AppScreen jf) {
         initComponents();
         parent = jf;
+        drawDeck();
+    }
+    
+    public void drawDeck() {
+        for (int i = 0; i < 8; i++) {
+            Card c = Card.drawCard();
+            c.getPic().setVisible(false);
+            this.add(c);
+            c.setLocation(80 + 60 * i, 70);
+            c.setVisible(true);
+        }
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                Card c = Card.drawCard();
+                this.add(c);
+                c.setLocation(200 + 60 * j, 200 + 90 * i);
+                c.setVisible(true);
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            Card c = Card.drawCard();
+            this.add(c);
+            c.setLocation(80 + 60 * i, 420);
+            c.setVisible(true);
+        }
+        while (!Card.isEmpty()) {
+            Card c = Card.drawCard();
+            c.getPic().setVisible(false);
+            this.add(c);
+            c.setLocation(110, 245);
+            c.setVisible(true);
+        }
     }
 
     /**
@@ -29,19 +63,30 @@ public class GameScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        returnBtn = new javax.swing.JButton();
+
+        returnBtn.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        returnBtn.setText("Return");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 668, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 561, Short.MAX_VALUE)
+                .addComponent(returnBtn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(returnBtn)
+                .addContainerGap(276, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton returnBtn;
     // End of variables declaration//GEN-END:variables
 }
