@@ -5,17 +5,23 @@
  */
 package hanafuda;
 
+import java.io.FileNotFoundException;
 import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 
-/**
- *
- * @author shirdav18
- */
 public class GameScreen extends javax.swing.JPanel {
 
     private static AppScreen parent;
-    private int playerX = 550;
-    private int computerX = 550;
+    private int playerX = 560;
+    private int opponentX = 560;
+    private ArrayList<Card> opponentCards = new ArrayList<>(); 
+    private ArrayList<Card> playerCards = new ArrayList<>(); 
+    private ArrayList<Card> middleCards = new ArrayList<>();
+    private Stack<Card> deck = new Stack<>(); 
     
     public GameScreen(AppScreen jf) {
         initComponents();
@@ -25,37 +31,67 @@ public class GameScreen extends javax.swing.JPanel {
     
     public void drawDeck() {
         for (int i = 0; i < 8; i++) {
-            Card c = Card.drawCard();
-            c.getPic().setVisible(false);
-            this.add(c);
-            c.setLocation(80 + 60 * i, 70);
-            c.setVisible(true);
+            opponentCards.add(Card.drawCard());
+            opponentCards.get(i).getPic().setVisible(false);
+            this.add(opponentCards.get(i));
+            opponentCards.get(i).setLocation(80 + 60 * i, 70);
+            opponentCards.get(i).setVisible(true);
+        }
+        for (int i = 0; i < 8; i++) {
+            playerCards.add(Card.drawCard());
+            playerCards.get(i).getPic().setVisible(true);
+            this.add(playerCards.get(i));
+            playerCards.get(i).setLocation(80 + 60 * i, 420);
+            playerCards.get(i).setVisible(true);
         }
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 4; j++) {
-                Card c = Card.drawCard();
-                c.getPic().setVisible(true);
-                this.add(c);
-                c.setLocation(200 + 60 * j, 200 + 90 * i);
-                c.setVisible(true);
+                middleCards.add(Card.drawCard());
+                middleCards.get(4 * i + j).getPic().setVisible(true);
+                this.add(middleCards.get(4 * i + j));
+                middleCards.get(4 * i + j).setLocation(200 + 60 * j, 200 + 90 * i);
+                middleCards.get(4 * i + j).setVisible(true);
             }
         }
-        for (int i = 0; i < 8; i++) {
-            Card c = Card.drawCard();
-            c.getPic().setVisible(true);
-            this.add(c);
-            c.setLocation(80 + 60 * i, 420);
-            c.setVisible(true);
-        }
         while (!Card.isEmpty()) {
-            Card c = Card.drawCard();
-            c.getPic().setVisible(false);
-            this.add(c);
-            c.setLocation(110, 245);
-            c.setVisible(true);
+            deck.push(Card.drawCard());
+            deck.peek().getPic().setVisible(false);
+            this.add(deck.peek());
+            deck.peek().setLocation(50, 245);
+            deck.peek().setVisible(true);
         }
     }
 
+    public boolean checkMatch(Card cd) {
+        for (Card c: middleCards) {
+            boolean inXBound = cd.getX() >= c.getX() && cd.getX() <= c.getX() + 51;
+            boolean inYBound = cd.getY() >= c.getY() && cd.getY() <= c.getY() + 84;
+            if (inXBound && inYBound) {
+                if (cd.getMonth() == c.getMonth()) {
+                    Card newC = deck.pop();
+                    newC.getPic().setVisible(true);
+                    newC.setLocation(110,245);
+                    playerCards.remove(cd);
+                    middleCards.remove(c);
+                    cd.setLocation(playerX, 420);
+                    playerX += 10;
+                    c.setLocation(playerX, 420);
+                    playerX += 10;
+                    this.repaint();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public JButton getReturnBtn() {
+        return returnBtn;
+    }
+    
+    public JButton getHTPBtn() {
+        return HTPButton;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,29 +102,68 @@ public class GameScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         returnBtn = new javax.swing.JButton();
+        HTPButton = new javax.swing.JButton();
 
+        returnBtn.setBackground(new java.awt.Color(102, 102, 102));
         returnBtn.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        returnBtn.setForeground(new java.awt.Color(255, 255, 255));
         returnBtn.setText("Return");
+        returnBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                returnBtnMouseClicked(evt);
+            }
+        });
+
+        HTPButton.setBackground(new java.awt.Color(102, 102, 102));
+        HTPButton.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        HTPButton.setForeground(new java.awt.Color(255, 255, 255));
+        HTPButton.setText("How to Play");
+        HTPButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HTPButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 509, Short.MAX_VALUE)
+                .addComponent(HTPButton))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 561, Short.MAX_VALUE)
-                .addComponent(returnBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(returnBtn)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
+                .addComponent(HTPButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnBtn)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addGap(0, 442, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void returnBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnBtnMouseClicked
+        parent.showScreen("home");
+    }//GEN-LAST:event_returnBtnMouseClicked
+
+    private void HTPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HTPButtonMouseClicked
+        HTPButton.setVisible(false);
+        returnBtn.setVisible(false);
+        try {
+            ((HTPScreen)AppScreen.getPanel(5)).setHTPText();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GameScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        parent.showScreen("htpG");
+    }//GEN-LAST:event_HTPButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton HTPButton;
     private javax.swing.JButton returnBtn;
     // End of variables declaration//GEN-END:variables
 }

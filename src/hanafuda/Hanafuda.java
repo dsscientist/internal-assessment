@@ -15,8 +15,6 @@ public class Hanafuda {
     public static void main(String[] args) throws FileNotFoundException {
         Hanafuda.getSettings(SETTINGS);
         Card.createDeck();
-        Test t = new Test();
-        t.setVisible(true);
         AppScreen as = new AppScreen();
         as.setVisible(true);
         Combination.initializeCombos();
@@ -78,5 +76,13 @@ public class Hanafuda {
        
     public static Player getPlayer() {
         return current;
+    }
+    
+    public static String getLanguage() {
+        return language;
+    }
+    
+    public static void setLanguage(String lang) {
+        language = lang;
     }
 }

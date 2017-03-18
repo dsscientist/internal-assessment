@@ -6,6 +6,9 @@
 package hanafuda;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,13 +34,29 @@ public class HomeScreen extends javax.swing.JPanel {
         returnButton.setVisible(false);
         newPlayerField.setText("Enter Name Here");
         newPlayerField.setVisible(false);
+        languageBtn.setText(Hanafuda.getLanguage());
         parent = jf;
     }
     
     private void setPlayerName(String name) {
         currentPName.setText(name);
     }
-
+    
+    public JButton getHTPBtn() {
+        return HTPButton;        
+    }
+    
+    public JButton getPlayBtn() {
+        return playButton;        
+    }
+    
+    public JButton getChangePBtn() {
+        return changePlayerButton;        
+    }
+    
+    public JButton getLangBtn() {
+        return languageBtn;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +76,7 @@ public class HomeScreen extends javax.swing.JPanel {
         newPButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
         newPlayerField = new javax.swing.JTextField();
+        languageBtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(940, 950));
 
@@ -147,6 +167,16 @@ public class HomeScreen extends javax.swing.JPanel {
             }
         });
 
+        languageBtn.setBackground(new java.awt.Color(245, 112, 255));
+        languageBtn.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
+        languageBtn.setText("English");
+        languageBtn.setPreferredSize(new java.awt.Dimension(73, 29));
+        languageBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                languageBtnMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,13 +197,15 @@ public class HomeScreen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(newPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameBox)
-                    .addComponent(changePlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HTPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newPlayerField))
+                    .addComponent(languageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(newPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nameBox)
+                        .addComponent(changePlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(HTPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(newPlayerField)))
                 .addGap(376, 376, 376))
         );
         layout.setVerticalGroup(
@@ -185,12 +217,14 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addComponent(currentPName)
                 .addGap(48, 48, 48)
                 .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(returnButton)
+                .addGap(11, 11, 11)
+                .addComponent(languageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(newPButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(HTPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -209,6 +243,7 @@ public class HomeScreen extends javax.swing.JPanel {
 
     private void changePlayerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePlayerButtonMouseClicked
         changePlayerButton.setVisible(false);
+        languageBtn.setVisible(false);
         nameBox.setVisible(true);
         newPButton.setVisible(true);
         returnButton.setVisible(true);
@@ -231,6 +266,7 @@ public class HomeScreen extends javax.swing.JPanel {
             HTPButton.setVisible(true);
             playButton.setVisible(true);
             changePlayerButton.setVisible(true);
+            languageBtn.setVisible(true);
             currentPName.setText(Hanafuda.getPlayer().getName());
             nameBox.setText("Enter name here");
         } else {
@@ -247,9 +283,19 @@ public class HomeScreen extends javax.swing.JPanel {
         playButton.setVisible(true);
         changePlayerButton.setVisible(true);
         newPlayerField.setVisible(false);
+        languageBtn.setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void HTPButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HTPButtonMouseClicked
+        HTPButton.setVisible(false);
+        playButton.setVisible(false);
+        changePlayerButton.setVisible(false);
+        languageBtn.setVisible(false);
+        try {
+            ((HTPScreen)AppScreen.getPanel(2)).setHTPText();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HomeScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
         parent.showScreen("htpH");
     }//GEN-LAST:event_HTPButtonMouseClicked
 
@@ -272,18 +318,24 @@ public class HomeScreen extends javax.swing.JPanel {
         playButton.setVisible(true);
         changePlayerButton.setVisible(true);
         newPlayerField.setVisible(false);
+        languageBtn.setVisible(true);
         this.repaint();
     }//GEN-LAST:event_newPlayerFieldActionPerformed
 
     private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
-        HTPButton.setVisible(false);
-        changePlayerButton.setVisible(false);
-        currentPName.setVisible(false);
-        currentPlayerLabel.setVisible(false);
-        playButton.setVisible(false);
-        title.setVisible(false);
         parent.showScreen("game");
     }//GEN-LAST:event_playButtonMouseClicked
+
+    private void languageBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_languageBtnMouseClicked
+        String current = Hanafuda.getLanguage();
+        if (current.equals("English")) {
+            languageBtn.setText("Japanese");
+            Hanafuda.setLanguage("Japanese");
+        } else {
+            languageBtn.setText("English");
+            Hanafuda.setLanguage("English");
+        }
+    }//GEN-LAST:event_languageBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -291,6 +343,7 @@ public class HomeScreen extends javax.swing.JPanel {
     private javax.swing.JButton changePlayerButton;
     private javax.swing.JLabel currentPName;
     private javax.swing.JLabel currentPlayerLabel;
+    private javax.swing.JButton languageBtn;
     private javax.swing.JTextField nameBox;
     private javax.swing.JButton newPButton;
     private javax.swing.JTextField newPlayerField;

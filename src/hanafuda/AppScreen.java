@@ -26,7 +26,7 @@ public class AppScreen extends javax.swing.JFrame {
     //3: GameBgrd
     //4: GameScreen
     //5: HTPScreen
-    
+   
     public AppScreen() throws FileNotFoundException {
         initComponents();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -39,6 +39,14 @@ public class AppScreen extends javax.swing.JFrame {
         this.add(GAME);
         GAME.setSize(X_DIMEN, Y_DIMEN);
         showScreen("home");
+        this.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                setSize(X_DIMEN + 15,Y_DIMEN + 40);
+            }
+            public void componentMoved(ComponentEvent e) {
+                setLocation(50,50);
+            }
+      });
     }
 
     /**
@@ -148,7 +156,7 @@ public class AppScreen extends javax.swing.JFrame {
         HOME.add(SCREENS[2], 3);
         GAME.add(SCREENS[3], 1);
         GAME.add(SCREENS[4], 2);
-        GAME.add(SCREENS[5], 3);
+        GAME.add(SCREENS[5], 1);
     }
     
     public void showScreen(String screenName) {
@@ -164,6 +172,7 @@ public class AppScreen extends javax.swing.JFrame {
                 HOME.setVisible(true);
                 SCREENS[0].setVisible(true);
                 SCREENS[1].setVisible(true);
+                SCREENS[2].setVisible(false);
                 HOME.moveToFront(SCREENS[0]);
                 HOME.moveToFront(SCREENS[1]);
                 break;
@@ -177,27 +186,27 @@ public class AppScreen extends javax.swing.JFrame {
                 HOME.setVisible(false);
                 GAME.setVisible(true);
                 SCREENS[5].setVisible(true);
-                HOME.moveToFront(SCREENS[5]);
+                GAME.moveToFront(SCREENS[5]);
                 break;
             case "game":
                 HOME.setVisible(false);
                 GAME.setVisible(true);
                 SCREENS[3].setVisible(true);
                 SCREENS[4].setVisible(true);
+                SCREENS[5].setVisible(false);
                 GAME.moveToFront(SCREENS[3]);
                 GAME.moveToFront(SCREENS[4]);
                 break;
         }
-        
-        this.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent e) {
-                setSize(X_DIMEN + 15,Y_DIMEN + 40);
-            }
-            public void componentMoved(ComponentEvent e) {
-                setLocation(50,50);
-            }
-      });
     }
+
+public static JPanel getPanel(int i) {
+    return SCREENS[i];
+}
+
+public static boolean homeIsVisible() {
+    return HOME.isVisible();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

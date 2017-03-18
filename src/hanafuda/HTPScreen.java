@@ -18,7 +18,6 @@ public class HTPScreen extends javax.swing.JPanel {
         this.setSize(960, 540);
         htpText.setOpaque(false);
         htpText.setVisible(true);
-        setHTPText();
         htpText.setEditable(false);
         parent = jf;
     }
@@ -63,16 +62,32 @@ public class HTPScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void htpTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_htpTextKeyTyped
-        parent.showScreen("home");
+        if (AppScreen.homeIsVisible()) {
+            ((HomeScreen)AppScreen.getPanel(1)).getHTPBtn().setVisible(true);
+            ((HomeScreen)AppScreen.getPanel(1)).getPlayBtn().setVisible(true);
+            ((HomeScreen)AppScreen.getPanel(1)).getChangePBtn().setVisible(true);
+            ((HomeScreen)AppScreen.getPanel(1)).getLangBtn().setVisible(true);
+            parent.showScreen("home");
+        } else {
+            ((GameScreen)AppScreen.getPanel(4)).getHTPBtn().setVisible(true);
+            ((GameScreen)AppScreen.getPanel(4)).getReturnBtn().setVisible(true);
+            parent.showScreen("game");
+        }
     }//GEN-LAST:event_htpTextKeyTyped
 
     public void setHTPText() throws FileNotFoundException {
         File instruct = new File("HowToPlay" + Hanafuda.language + ".txt");
         Scanner line = new Scanner(instruct, "UTF-8");
+        if (Hanafuda.language.equals("English")) {
+            htpText.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 20));
+        } else {
+            htpText.setFont(new java.awt.Font("MS Mincho", 0, 20));
+        }
+        htpText.setText("");
+        htpText.append(line.nextLine());
         while (line.hasNextLine()) {
             htpText.append(line.nextLine() + "\n");
         }
-        System.out.println(htpText.getText());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

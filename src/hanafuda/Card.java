@@ -203,6 +203,9 @@ public class Card extends javax.swing.JPanel {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cardPicMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cardPicMouseReleased(evt);
+            }
         });
         cardPic.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -227,16 +230,19 @@ public class Card extends javax.swing.JPanel {
     }//GEN-LAST:event_cardPicMousePressed
 
     private void cardPicMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseDragged
-        boolean inXBound = 950 > evt.getX() && evt.getX() > 10;
-        boolean inYBound = 530 > evt.getY() && evt.getY() > 10;
+        boolean inXBound = 960 > evt.getXOnScreen() && evt.getXOnScreen() > 0;
+        boolean inYBound = 540 > evt.getYOnScreen() && evt.getYOnScreen() > 0;
         if (inXBound && inYBound) {
-            System.out.println((evt.getXOnScreen() - 100) + " " + (evt.getYOnScreen() - 370));
-            this.getParent().setLocation(evt.getXOnScreen() - 100, evt.getYOnScreen() - 370);
+            this.setLocation(evt.getXOnScreen() - 75, evt.getYOnScreen() - 120);
         }
     }//GEN-LAST:event_cardPicMouseDragged
 
     private void cardPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseClicked
     }//GEN-LAST:event_cardPicMouseClicked
+
+    private void cardPicMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardPicMouseReleased
+        ((GameScreen)AppScreen.getPanel(4)).checkMatch(this);
+    }//GEN-LAST:event_cardPicMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
